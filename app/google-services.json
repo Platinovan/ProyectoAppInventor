@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1092932448931",
+    "project_id": "ovniwallop-9ac0f",
+    "storage_bucket": "ovniwallop-9ac0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092932448931:android:7f29ff62cf8936e4358516",
+        "android_client_info": {
+          "package_name": "com.tarea.proyectoappinventor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092932448931-h60u1fe6h03sg8qoqql4ov83l3tvp05k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tarea.proyectoappinventor",
+            "certificate_hash": "d8888cf904a723d6e0f2d8d31a80283f0903591e"
+          }
+        },
+        {
+          "client_id": "1092932448931-2h027e1aadrqso56mv5fa8cck1i4aiao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK9RNmqf_m27pyDLzdNwRltvJ-kFs18fc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092932448931-2h027e1aadrqso56mv5fa8cck1i4aiao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

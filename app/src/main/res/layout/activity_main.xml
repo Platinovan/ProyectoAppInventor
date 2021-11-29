@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/bgcolor">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:text="OVNI"
+        android:textSize="75sp"
+        android:textColor="@color/textcolor"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginTop="25sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Wallop"
+        android:textColor="@color/textcolor"
+        android:textSize="40sp"
+        android:layout_marginTop="105sp"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_width="280dp"
+        android:layout_height="280sp"
+        android:src="@drawable/ovni"
+        android:layout_marginTop="165sp"
+        android:layout_centerHorizontal="true"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonRegistro"
+        android:layout_width="200sp"
+        android:layout_height="65sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="435sp"
+        android:background="#CD4444"
+        android:text="Registrarse"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonLogin"
+        android:layout_width="200sp"
+        android:layout_height="65sp"
+        android:background="#CD4444"
+        android:layout_marginTop="535sp"
+        android:layout_centerHorizontal="true"
+        android:text="Iniciar sesion"
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Desarrollado por mi"
+        android:textColor="@color/white"
+        android:textAlignment="textEnd"
+        android:paddingHorizontal="10sp"
+        android:textSize="11sp"
+        android:paddingVertical="2sp"/>
+
+</RelativeLayout>

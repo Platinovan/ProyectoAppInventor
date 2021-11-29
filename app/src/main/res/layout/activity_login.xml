@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login"
+    android:background="@color/bgcolor">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Iniciar sesión"
+        android:textSize="55sp"
+        android:paddingLeft="25sp"
+        android:layout_marginTop="18sp"/>
+
+        <EditText
+            android:id="@+id/CorreoLogin"
+            android:layout_width="250sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130sp"
+            android:layout_marginLeft="25sp"
+            android:hint="Correo electronico"
+            android:textColorHint="@color/lightgray"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:inputType="textEmailAddress"
+            android:backgroundTint="@color/white" />
+
+        <EditText
+            android:id="@+id/PasswordLogin"
+            android:layout_width="250sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="210sp"
+            android:layout_marginLeft="25sp"
+            android:hint="Contraseña"
+            android:textColorHint="@color/lightgray"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:inputType="textPassword"
+            android:backgroundTint="@color/white"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/InicioSesion"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25sp"
+        android:layout_marginTop="290sp"
+        android:background="@color/Registrobtn"
+        android:text="Entrar"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <!-- Comienza en diseño de las imágenes-->
+
+    <ImageView
+        android:layout_width="160sp"
+        android:layout_height="185sp"
+        android:src="@drawable/saturno"
+        android:layout_marginTop="99sp"
+        android:layout_alignParentEnd="true"/>
+
+    <ImageView
+        android:layout_width="180sp"
+        android:layout_height="180sp"
+        android:src="@drawable/asteroide_ovni"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="330sp"
+        android:layout_marginRight="25sp"/>
+
+    <ImageView
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:src="@drawable/asteroide_grande"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40sp"
+        android:layout_marginLeft="30sp"/>
+
+    <ImageView
+        android:layout_width="135sp"
+        android:layout_height="135sp"
+        android:src="@drawable/asteroide_chico"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="0sp"
+        android:layout_marginBottom="0sp"/>
+
+
+</RelativeLayout>
