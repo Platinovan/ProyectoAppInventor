@@ -2,13 +2,12 @@ package com.tarea.proyectoappinventor;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.strictmode.WebViewMethodCalledOnWrongThreadViolation;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -16,7 +15,8 @@ public class MenuInicio extends AppCompatActivity {
     //Declaracion de variables
     FirebaseAuth auth;
     FirebaseUser user;
-    AppCompatButton cerrar;
+    AppCompatButton opciones;
+    AppCompatButton Jugar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +28,23 @@ public class MenuInicio extends AppCompatActivity {
         //Instanciacion de las variables declaradas
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-        cerrar = findViewById(R.id.cerrarSesion);
+        opciones = findViewById(R.id.MasOpciones);
+        Jugar = findViewById(R.id.Jugar);
 
-        //cuando se presione el boton cerrar sesion
-        cerrar.setOnClickListener(new View.OnClickListener() {
+        //cuando se presione el boton Mas Opciones
+        opciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cerrarSesion();
+                Intent intent = new Intent(getApplicationContext(), MenuOpciones.class);
+                startActivity(intent);
+            }
+        });
+
+        //Inicia actividad del juego
+        Jugar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Jugar", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -56,9 +66,4 @@ public class MenuInicio extends AppCompatActivity {
         }
     }
 
-    //Metodo para cerrar sesion
-    private void cerrarSesion(){
-        auth.signOut();
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-    }
 }
