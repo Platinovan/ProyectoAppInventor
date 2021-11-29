@@ -6,18 +6,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MenuInicio"
-    android:background="@color/black"  >
+    android:background="@color/bgcolor" >
+
+    <!-- Titulo del juego en menu principal -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:text="OVNI"
+        android:textSize="75sp"
+        android:textColor="@color/textcolor"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginTop="0sp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Ha iniciado sesion       correctamente"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="55sp" />
+        android:text="Wallop"
+        android:textColor="@color/textcolor"
+        android:textSize="40sp"
+        android:layout_marginTop="75sp"
+        android:layout_centerHorizontal="true"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <!-- Puntuacion mas alta en el juego -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mejor Puntuacion: "
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:layout_marginTop="140sp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/Puntuacion"
+        android:layout_width="170sp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="175sp"
+        android:textSize="40sp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:text="832467"/>
+
+    <!-- Imagen de la nave -->
+    <ImageView
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        android:src="@drawable/cohete_espacial"
+        android:layout_marginTop="250sp"
+        android:layout_centerHorizontal="true"/>
+
+    <!--<androidx.appcompat.widget.AppCompatButton
         android:id="@+id/cerrarSesion"
         android:layout_width="150sp"
         android:layout_height="wrap_content"
@@ -25,6 +67,6 @@
         android:background="#3F51B5"
         android:text="Cerrar sesion"
         android:textColor="@color/white"
-        android:textSize="16sp"/>
+        android:textSize="16sp"/>-->
 
 </RelativeLayout>
