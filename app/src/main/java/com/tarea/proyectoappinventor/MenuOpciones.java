@@ -64,6 +64,7 @@ public class MenuOpciones extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cerrarSesion();
+                Toast.makeText(getApplicationContext(), "Sesion cerrada", Toast.LENGTH_SHORT).show();
             }
         });
 

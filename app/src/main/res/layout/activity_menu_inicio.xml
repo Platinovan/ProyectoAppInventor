@@ -17,20 +17,19 @@
         android:text="OVNI"
         android:textSize="75sp"
         android:textColor="@color/textcolor"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="@font/verminvibesv"
         android:layout_marginTop="0sp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="75sp"
+        android:layout_marginTop="83sp"
         android:text="Wallop"
         android:textAlignment="center"
         android:textColor="@color/textcolor"
-        android:textSize="40sp" />
-
-
+        android:textSize="35sp"
+        android:fontFamily="@font/verminvibesv"/>
 
     <!-- Puntuacion mas alta en el juego -->
     <TextView
@@ -64,14 +63,15 @@
 
     <!-- Muestra el nombre de usuario que esta en linea -->
     <TextView
+        android:id="@+id/user_field"
         android:layout_width="230sp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="164sp"
-        android:text="usernumber 3846"
         android:textColor="@color/lightgray"
         android:textAlignment="center"
+        android:text="--------"
         android:textSize="16sp"/>
 
     <!-- Boton que inicara la actividad del juego -->
@@ -83,17 +83,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="90sp"
         android:text="Jugar"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:fontFamily="@font/verminvibesv"/>
 
-
+    <!-- Inicia la actividad de mas opciones -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/MasOpciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#3F51B5"
-        android:text="Más opciones"
+        android:text="Mas opciones"
         android:textColor="@color/white"
-        android:textSize="16sp"/>
+        android:textSize="19sp"
+        android:fontFamily="@font/audiowide"/>
 
 </RelativeLayout>

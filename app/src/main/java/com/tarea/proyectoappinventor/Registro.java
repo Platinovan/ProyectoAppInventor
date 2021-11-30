@@ -81,6 +81,9 @@ public class Registro extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             FirebaseUser user = auth.getCurrentUser();
+
+                            int score = 0;
+
                             assert user != null;
                             String userUID = user.getUid();
                             String mailStr = MAIL.getText().toString();
@@ -94,6 +97,7 @@ public class Registro extends AppCompatActivity {
                             userData.put("Contraseña", passStr);
                             userData.put("Apodo", nicknameStr);
                             userData.put("Se unio", dateStr);
+                            userData.put("Puntuacion", score);
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference reference = database.getReference("OvniWallop Users");

@@ -8,26 +8,31 @@
     tools:context=".MainActivity"
     android:background="@color/bgcolor">
 
+    <!-- 1/2 titulo -->
     <TextView
+        android:id="@+id/title1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:text="OVNI"
-        android:textSize="75sp"
+        android:textSize="85sp"
         android:textColor="@color/textcolor"
-        android:fontFamily="sans-serif-black"
-        android:layout_marginTop="25sp"/>
+        android:fontFamily="@font/audiowide"
+        android:layout_marginTop="22sp"/>
 
+    <!-- 2/2 titulo -->
     <TextView
+        android:id="@+id/title2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="Wallop"
         android:textColor="@color/textcolor"
-        android:textSize="40sp"
-        android:layout_marginTop="105sp"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="45sp"
+        android:layout_marginTop="107sp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/audiowide"/>
 
     <ImageView
         android:layout_width="280dp"
@@ -45,7 +50,8 @@
         android:background="#CD4444"
         android:text="Registrarse"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="18sp"
+        android:fontFamily="@font/verminvibesv"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/botonLogin"
@@ -56,7 +62,8 @@
         android:layout_centerHorizontal="true"
         android:text="Iniciar sesion"
         android:textColor="@color/white"
-        android:textSize="20sp"/>
+        android:textSize="18sp"
+        android:fontFamily="@font/verminvibesv"/>
 
     <TextView
         android:layout_width="match_parent"
