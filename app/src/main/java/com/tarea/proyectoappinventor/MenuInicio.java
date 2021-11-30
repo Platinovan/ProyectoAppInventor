@@ -30,6 +30,11 @@ public class MenuInicio extends AppCompatActivity {
     TextView userField; //campo para nombre de usuario
     TextView puntuacion;
 
+    //Strings para los datos de firebase
+    String usr;
+    String score;
+    String uid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +66,15 @@ public class MenuInicio extends AppCompatActivity {
         Jugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Jugar", Toast.LENGTH_SHORT).show();
+                Intent juego = new Intent(getApplicationContext(), Juego.class);
+
+                //Se envian los parametros necesarios a la actividad del juego
+                juego.putExtra("UID", uid);
+                juego.putExtra("USER", usr);
+                juego.putExtra("SCORE", score);
+
+                //Se incia la actividad del juego
+                startActivity(juego);
             }
         });
 
@@ -90,9 +103,13 @@ public class MenuInicio extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()){
-                    String user = ""+ds.child("Apodo").getValue();
-                    String score = ""+ds.child("Puntuacion").getValue();
-                    userField.setText(user);
+                    //Se obtienen los datos de la base de datos
+                    usr = ""+ds.child("Apodo").getValue();
+                    score = ""+ds.child("Puntuacion").getValue();
+                    uid = ""+ds.child("Uid").getValue();
+
+                    //Se ponen los valores en el campo de texto
+                    userField.setText(usr);
                     puntuacion.setText(score);
                 }
             }

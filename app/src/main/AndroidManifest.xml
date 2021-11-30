@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoAppInventor">
         <activity
+            android:name=".Juego"
+            android:exported="false" />
+        <activity
             android:name=".MenuOpciones"
             android:exported="false" />
         <activity
