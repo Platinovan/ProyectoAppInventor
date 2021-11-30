@@ -23,12 +23,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Wallop"
-        android:textColor="@color/textcolor"
-        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="75sp"
-        android:layout_centerHorizontal="true"/>
+        android:text="Wallop"
+        android:textAlignment="center"
+        android:textColor="@color/textcolor"
+        android:textSize="40sp" />
+
+
 
     <!-- Puntuacion mas alta en el juego -->
     <TextView
@@ -40,6 +42,7 @@
         android:layout_marginTop="140sp"
         android:textAlignment="center"/>
 
+    <!-- Campo de texto para la puntuacion mas alta-->
     <TextView
         android:id="@+id/Puntuacion"
         android:layout_width="170sp"
@@ -49,24 +52,48 @@
         android:textSize="40sp"
         android:textColor="@color/white"
         android:textAlignment="center"
-        android:text="832467"/>
+        android:text="---------"/>
 
     <!-- Imagen de la nave -->
     <ImageView
         android:layout_width="200sp"
         android:layout_height="200sp"
         android:src="@drawable/cohete_espacial"
-        android:layout_marginTop="250sp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginTop="230sp"
+        android:layout_centerHorizontal="true" />
 
-    <!--<androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cerrarSesion"
-        android:layout_width="150sp"
+    <!-- Muestra el nombre de usuario que esta en linea -->
+    <TextView
+        android:layout_width="230sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="164sp"
+        android:text="usernumber 3846"
+        android:textColor="@color/lightgray"
+        android:textAlignment="center"
+        android:textSize="16sp"/>
+
+    <!-- Boton que inicara la actividad del juego -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Jugar"
+        android:layout_width="230sp"
+        android:layout_height="75sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="90sp"
+        android:text="Jugar"
+        android:textSize="30sp"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/MasOpciones"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#3F51B5"
-        android:text="Cerrar sesion"
+        android:text="Más opciones"
         android:textColor="@color/white"
-        android:textSize="16sp"/>-->
+        android:textSize="16sp"/>
 
 </RelativeLayout>

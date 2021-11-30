@@ -1,0 +1,4 @@
+com/AndroidStudio/kiddiegame/MainActivity.java
+ com.AndroidStudio.kiddiegame.MainActivity
+com/AndroidStudio/kiddiegame/BuildConfig.java
+ com.AndroidStudio.kiddiegame.BuildConfig
