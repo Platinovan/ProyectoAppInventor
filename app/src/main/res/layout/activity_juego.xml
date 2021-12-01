@@ -69,7 +69,8 @@
         android:layout_height="120dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        app:lottie_rawRes="@raw/ovni"
+        app:lottie_imageAssetsFolder="assets"
+        app:lottie_fileName="ovni.json"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
 

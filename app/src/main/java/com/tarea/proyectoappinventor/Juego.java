@@ -1,5 +1,6 @@
 package com.tarea.proyectoappinventor;
 
+import androidx.annotation.RawRes;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,12 @@ public class Juego extends AppCompatActivity {
         sprite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ++contador;
+                puntaje.setText(String.valueOf(contador));
+                //Tengo que hacer que un numero aleatorio elija que esprite es el que aparece si
+                //para que vayan variando durante el juego
+                sprite.setAnimation("spaceship.json");
+                sprite.playAnimation();
             }
         });
 
