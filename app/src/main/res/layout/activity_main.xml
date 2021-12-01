@@ -34,12 +34,15 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/audiowide"/>
 
-    <ImageView
-        android:layout_width="280dp"
-        android:layout_height="280sp"
-        android:src="@drawable/ovni"
+    <!-- Animacion de la nave espacial con lottie -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        app:lottie_rawRes="@raw/ovni"
         android:layout_marginTop="165sp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/botonRegistro"

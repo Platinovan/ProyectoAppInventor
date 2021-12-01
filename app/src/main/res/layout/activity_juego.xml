@@ -8,4 +8,69 @@
     tools:context=".Juego"
     android:background="@color/bgcolor">
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="111dp">
+
+        <!-- Nave que indica el puntaje -->
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="83dp"
+            android:layout_height="83dp"
+            app:lottie_rawRes="@raw/spaceship"
+            app:lottie_loop="false"
+            app:lottie_autoPlay="false"
+            android:layout_marginVertical="14dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="15dp"/>
+
+        <!-- Text view donde se guardara el puntaje -->
+        <TextView
+            android:id="@+id/Puntaje"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="25dp"
+            android:layout_marginLeft="-10dp"
+            android:text="---"
+            android:textSize="35dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/verminvibesv"
+            android:textAlignment="center"/>
+
+        <!-- Animacion del reloj de arena -->
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            app:lottie_rawRes="@raw/reloj"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="2dp"/>
+
+        <!-- Text view donde se mostrara el tiempo restante -->
+        <TextView
+            android:id="@+id/TiempoRestante"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="25dp"
+            android:layout_marginLeft="-8dp"
+            android:text="--"
+            android:textSize="35dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/verminvibesv"
+            android:textAlignment="center"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- Sprite principal del juego -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/Sprite"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        app:lottie_rawRes="@raw/ovni"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
 </RelativeLayout>
