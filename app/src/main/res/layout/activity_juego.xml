@@ -75,4 +75,15 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
 
+    <!-- Sprite del reloj que da mas tiempo -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/mas_tiempo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:lottie_imageAssetsFolder="assets"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
 </RelativeLayout>

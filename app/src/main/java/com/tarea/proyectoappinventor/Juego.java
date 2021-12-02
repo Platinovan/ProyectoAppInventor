@@ -22,20 +22,19 @@ import com.airbnb.lottie.LottieAnimationView;
 public class Juego extends AppCompatActivity {
     //Declaracion de las variables
     LottieAnimationView sprite; //Sprite principal
+    LottieAnimationView mas_tiempo; //Sprite del reloj
     String UID, USER, SCORE; //Datos necesarios
     TextView puntaje, tiempo; //Puntaje y tiempo
     Random random = new Random(); //Para los numeros aleatorios
     RelativeLayout background;
     int contador = 0; //Puntaje durante el juego
-
+    int tiempo_partida = 6000;
     //Variable para saber cual de las naves se esta mostrando
     boolean stat = false; //Por defecto 'ovni.json'
     int alto, ancho; //Medidas de la pantalla
     boolean perdio = false; //Para cuando el usuario pierda
     Dialog GameOver;
-
-    //AppCompatButton JugarDeNuevo, VolverMenu;
-
+    CountDownTimer cuentaRegresiva;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +49,7 @@ public class Juego extends AppCompatActivity {
         tiempo = findViewById(R.id.TiempoRestante);
         background = findViewById(R.id.background);
         GameOver = new Dialog(Juego.this);
+        mas_tiempo = findViewById(R.id.mas_tiempo);
 
         //Se recuperan los valores enviados por la actvidad menu
         Bundle intent = getIntent().getExtras();
@@ -62,7 +62,8 @@ public class Juego extends AppCompatActivity {
         //obtienen medidas de la pantalla
         puntaje.setText(String.valueOf(contador));
         ObtenerMedidas();
-        CuentaRegresiva();
+        //CuentaRegresiva();
+        NuevaCuentaRegresiva();
 
         //Cuando se hace click en cualquier otra pare de la pantalla
         background.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +91,27 @@ public class Juego extends AppCompatActivity {
                     if (var <= 960000) {
                         stat = false;
                         sprite.setAnimation("ovni.json");
+
+                        //Dependiendo el numero puede aparecer el reloj
+                        if (var <= 960000) {
+                            mas_tiempo.setAnimation("mas_tiempo.json");
+                            mas_tiempo.playAnimation();
+                            //Cuando se presione el reloj
+                            mas_tiempo.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    //Se dan cinco segundos extra
+                                    if(cuentaRegresiva != null){
+                                        tiempo_partida += 10000;
+                                        cuentaRegresiva.cancel();
+                                    }else{
+                                        tiempo_partida = 0;
+                                    }
+                                    NuevaCuentaRegresiva();
+                                }
+                            });
+                        }
+
                     } else if (var == 973642) {
                         stat = false;
                         contador += 50;
@@ -106,11 +128,10 @@ public class Juego extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     //Metodo que obtiene las medidas de la pantalla
-    private void ObtenerMedidas(){
+    private void ObtenerMedidas() {
         Display pantalla = getWindowManager().getDefaultDisplay();
         Point point = new Point();
         pantalla.getSize(point);
@@ -119,7 +140,7 @@ public class Juego extends AppCompatActivity {
     }
 
     //Mueve el sprite a una posicion aleatoria
-    private void MoverSprite(){
+    private void MoverSprite() {
         //Coordenadas maximas y minimas
         int minX = 0;
         int minY = 111;
@@ -134,11 +155,13 @@ public class Juego extends AppCompatActivity {
         sprite.setY(y);
     }
 
-    private void CuentaRegresiva(){
+    private void CuentaRegresiva() {
+        //tiempo_pasado = 0;
         new CountDownTimer(5000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 tiempo.setText(String.valueOf(millisUntilFinished / 1000));
+                //tiempo_pasado += 1000;
             }
 
             public void onFinish() {
@@ -147,29 +170,50 @@ public class Juego extends AppCompatActivity {
                 MessageGOver();
             }
         }.start();
+
     }
 
-    private void MessageGOver(){
-        GameOver.setContentView(R.layout.game_over);
-        //Botones
-        /*JugarDeNuevo = findViewById(R.id.JugarDeNuevo);
-        VolverMenu = findViewById(R.id.VolverAlMenu);
+    private void NuevaCuentaRegresiva(){
+        cuentaRegresiva = new CountDownTimer(tiempo_partida + 0, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tiempo.setText(String.valueOf(millisUntilFinished / 1000));
+                tiempo_partida -= 1000;
+            }
 
-        //Cuando se presione volver a jugar
+            @Override
+            public void onFinish() {
+                tiempo.setText("00");
+                perdio = true;
+                MessageGOver();
+            }
+        }.start();
+    }
+
+
+    private void MessageGOver() {
+        GameOver.setContentView(R.layout.game_over);
+
+        AppCompatButton JugarDeNuevo = GameOver.findViewById(R.id.JugarNuevo);
+        AppCompatButton IrMenu = GameOver.findViewById(R.id.IrMenu);
+
+        //Cuando se presione Jugar de nuevo
         JugarDeNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Juego.this, "Jugar de nuevo", Toast.LENGTH_SHORT).show();
+                Intent JugarNuevo = new Intent(getApplicationContext(), Juego.class);
+                startActivity(JugarNuevo);
             }
         });
 
-        //Cuando se presione volver al menu
-        VolverMenu.setOnClickListener(new View.OnClickListener() {
+        //Cuando se presione Ir a Menu
+        IrMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Juego.this, "Volver al menu", Toast.LENGTH_SHORT).show();
+                Intent irMenu = new Intent(getApplicationContext(), MenuInicio.class);
+                startActivity(irMenu);
             }
-        });*/
+        });
 
         GameOver.show();
     }
