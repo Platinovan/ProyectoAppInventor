@@ -1,13 +1,17 @@
 package com.tarea.proyectoappinventor;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.AppCompatButton;
+import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,15 +21,20 @@ import com.airbnb.lottie.LottieAnimationView;
 
 public class Juego extends AppCompatActivity {
     //Declaracion de las variables
-    LottieAnimationView sprite;
-    String UID, USER, SCORE;
-    TextView puntaje, tiempo;
-    Random random = new Random();
-    int contador = 0;
+    LottieAnimationView sprite; //Sprite principal
+    String UID, USER, SCORE; //Datos necesarios
+    TextView puntaje, tiempo; //Puntaje y tiempo
+    Random random = new Random(); //Para los numeros aleatorios
+    RelativeLayout background;
+    int contador = 0; //Puntaje durante el juego
+
     //Variable para saber cual de las naves se esta mostrando
-    boolean stat = false;
-    //Medidas de la pantalla
-    int alto, ancho;
+    boolean stat = false; //Por defecto 'ovni.json'
+    int alto, ancho; //Medidas de la pantalla
+    boolean perdio = false; //Para cuando el usuario pierda
+    Dialog GameOver;
+
+    //AppCompatButton JugarDeNuevo, VolverMenu;
 
 
     @Override
@@ -39,6 +48,8 @@ public class Juego extends AppCompatActivity {
         sprite = findViewById(R.id.Sprite);
         puntaje = findViewById(R.id.Puntaje);
         tiempo = findViewById(R.id.TiempoRestante);
+        background = findViewById(R.id.background);
+        GameOver = new Dialog(Juego.this);
 
         //Se recuperan los valores enviados por la actvidad menu
         Bundle intent = getIntent().getExtras();
@@ -47,36 +58,52 @@ public class Juego extends AppCompatActivity {
         USER = intent.getString("USER");
         SCORE = intent.getString("SCORE");
 
-        //Se setean los valores de contador y tiempo
+        //Se setean los valores de contador y tiempo y se
+        //obtienen medidas de la pantalla
         puntaje.setText(String.valueOf(contador));
-        //Se obtienen las medidas de la pantalla
         ObtenerMedidas();
+        CuentaRegresiva();
 
+        //Cuando se hace click en cualquier otra pare de la pantalla
+        background.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Mistake!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Cuando se hace click en el sprite
         sprite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int var = (random.nextInt(1000000) + 1);
 
-                //Suma el puntaje dependiendo de la nave
-                if(stat){
-                    contador += 5;
-                }else{
-                    contador += 1;
-                }
+                if (!perdio) {
+                    //Suma el puntaje dependiendo de la nave
+                    if (stat) {
+                        contador += 5;
+                    } else {
+                        contador += 1;
+                    }
 
-                //Cambia la nave dependiendo del numero aleatorio en 'int var'
-                if(var <= 960000){
-                    sprite.setAnimation("ovni.json");
-                }else if(var == 973642){
-                    sprite.setAnimation("super_rare.json");
-                }else{
-                    sprite.setAnimation("spaceship.json");
-                }
+                    //Cambia la nave dependiendo del numero aleatorio en 'int var'
+                    if (var <= 960000) {
+                        stat = false;
+                        sprite.setAnimation("ovni.json");
+                    } else if (var == 973642) {
+                        stat = false;
+                        contador += 50;
+                        sprite.setAnimation("super_rare.json");
+                    } else {
+                        stat = true;
+                        sprite.setAnimation("spaceship.json");
+                    }
 
-                //Se inicia la animacion
-                puntaje.setText(String.valueOf(contador));
-                MoverSprite();
-                sprite.playAnimation();
+                    //Se inicia la animacion
+                    puntaje.setText(String.valueOf(contador));
+                    MoverSprite();
+                    sprite.playAnimation();
+                }
             }
         });
 
@@ -105,5 +132,45 @@ public class Juego extends AppCompatActivity {
 
         sprite.setX(x);
         sprite.setY(y);
+    }
+
+    private void CuentaRegresiva(){
+        new CountDownTimer(5000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                tiempo.setText(String.valueOf(millisUntilFinished / 1000));
+            }
+
+            public void onFinish() {
+                tiempo.setText("00");
+                perdio = true;
+                MessageGOver();
+            }
+        }.start();
+    }
+
+    private void MessageGOver(){
+        GameOver.setContentView(R.layout.game_over);
+        //Botones
+        /*JugarDeNuevo = findViewById(R.id.JugarDeNuevo);
+        VolverMenu = findViewById(R.id.VolverAlMenu);
+
+        //Cuando se presione volver a jugar
+        JugarDeNuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Juego.this, "Jugar de nuevo", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Cuando se presione volver al menu
+        VolverMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Juego.this, "Volver al menu", Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+        GameOver.show();
     }
 }

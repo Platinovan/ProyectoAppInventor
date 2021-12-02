@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="450dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="#C9647E"
+    android:padding="35dp">
+
+    <!-- TextField que indica porque termino el juego -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Se ha termiado el tiempo!"
+        android:textSize="20sp"
+        android:fontFamily="@font/verminvibesv"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <!-- Imagen de la nave ovni -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="140dp"
+        android:layout_height="160dp"
+        app:lottie_imageAssetsFolder="assets"
+        app:lottie_fileName="ufo_gameover.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_marginHorizontal="55dp"
+        android:layout_marginTop="30dp" />
+
+    <!-- Boton para volver a jugar -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/JugarDeNuevo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Volver a jugar"
+        android:fontFamily="@font/audiowide"
+        android:background="#6997CE"/>
+
+    <!-- Boton para regresar al inicio -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/VolverAlMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Regresal al menu"
+        android:fontFamily="@font/audiowide"
+        android:background="#6997CE"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
