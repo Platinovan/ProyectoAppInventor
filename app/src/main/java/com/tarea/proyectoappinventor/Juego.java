@@ -1,12 +1,17 @@
 package com.tarea.proyectoappinventor;
 
-import androidx.annotation.RawRes;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Random;
 
 import com.airbnb.lottie.LottieAnimationView;
 
@@ -15,7 +20,12 @@ public class Juego extends AppCompatActivity {
     LottieAnimationView sprite;
     String UID, USER, SCORE;
     TextView puntaje, tiempo;
+    Random random = new Random();
     int contador = 0;
+    //Variable para saber cual de las naves se esta mostrando
+    boolean stat = false;
+    //Medidas de la pantalla
+    int alto, ancho;
 
 
     @Override
@@ -38,18 +48,62 @@ public class Juego extends AppCompatActivity {
         SCORE = intent.getString("SCORE");
 
         //Se setean los valores de contador y tiempo
-        puntaje.setText(SCORE);
+        puntaje.setText(String.valueOf(contador));
+        //Se obtienen las medidas de la pantalla
+        ObtenerMedidas();
+
         sprite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ++contador;
+                int var = (random.nextInt(1000000) + 1);
+
+                //Suma el puntaje dependiendo de la nave
+                if(stat){
+                    contador += 5;
+                }else{
+                    contador += 1;
+                }
+
+                //Cambia la nave dependiendo del numero aleatorio en 'int var'
+                if(var <= 960000){
+                    sprite.setAnimation("ovni.json");
+                }else if(var == 973642){
+                    sprite.setAnimation("super_rare.json");
+                }else{
+                    sprite.setAnimation("spaceship.json");
+                }
+
+                //Se inicia la animacion
                 puntaje.setText(String.valueOf(contador));
-                //Tengo que hacer que un numero aleatorio elija que esprite es el que aparece si
-                //para que vayan variando durante el juego
-                sprite.setAnimation("spaceship.json");
+                MoverSprite();
                 sprite.playAnimation();
             }
         });
 
+    }
+
+    //Metodo que obtiene las medidas de la pantalla
+    private void ObtenerMedidas(){
+        Display pantalla = getWindowManager().getDefaultDisplay();
+        Point point = new Point();
+        pantalla.getSize(point);
+        ancho = point.x;
+        alto = point.y;
+    }
+
+    //Mueve el sprite a una posicion aleatoria
+    private void MoverSprite(){
+        //Coordenadas maximas y minimas
+        int minX = 0;
+        int minY = 111;
+        int maxX = ancho - sprite.getWidth();
+        int maxY = alto - sprite.getHeight();
+
+        //Coordenadas aleatorias
+        int x = random.nextInt(((maxX - minX) + 1) + minX);
+        int y = random.nextInt(maxY + 1 - minY) + minY;
+
+        sprite.setX(x);
+        sprite.setY(y);
     }
 }
