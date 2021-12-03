@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-42:12
-INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-42:12
-INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-42:12
-INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-42:12
+ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-43:12
 MERGED from [com.airbnb.android:lottie:4.2.2] C:\Users\princ\.gradle\caches\transforms-3\029b51f5decd82346c756f466c111ab3\transformed\jetified-lottie-4.2.2\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.material:material:1.4.0] C:\Users\princ\.gradle\caches\transforms-3\8a7a06036e0c4f4e613a8bbc02ac21f5\transformed\material-1.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.1] C:\Users\princ\.gradle\caches\transforms-3\b51774edc34adde96528cd3b4520cdcd\transformed\constraintlayout-2.1.1\AndroidManifest.xml:2:1-11:12
@@ -69,25 +69,25 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\princ\.gradle\ca
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\princ\.gradle\caches\transforms-3\7ffe4246977594fb4a9b6697a06b326e\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\princ\.gradle\caches\transforms-3\3c4cdcd2e9f2910d703350965f49f5be\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\princ\.gradle\caches\transforms-3\f33bcb2f5c49a496470aa54ba8b02aa6\transformed\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-42:12
-INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-42:12
-INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-42:12
+INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-43:12
 	package
 		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:3:5-44
 		INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-42:12
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-43:12
 		INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-42:12
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:1-43:12
 		INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:5:5-40:19
+ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:5:5-42:19
 MERGED from [com.airbnb.android:lottie:4.2.2] C:\Users\princ\.gradle\caches\transforms-3\029b51f5decd82346c756f466c111ab3\transformed\jetified-lottie-4.2.2\AndroidManifest.xml:9:5-20
 MERGED from [com.airbnb.android:lottie:4.2.2] C:\Users\princ\.gradle\caches\transforms-3\029b51f5decd82346c756f466c111ab3\transformed\jetified-lottie-4.2.2\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.material:material:1.4.0] C:\Users\princ\.gradle\caches\transforms-3\8a7a06036e0c4f4e613a8bbc02ac21f5\transformed\material-1.4.0\AndroidManifest.xml:22:5-20
@@ -151,59 +151,63 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\pr
 	android:theme
 		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:11:9-57
 activity#com.tarea.proyectoappinventor.Juego
-ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:12:9-14:40
+ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:12:9-15:57
+	android:screenOrientation
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:15:13-55
 	android:exported
 		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:14:13-37
 	android:name
 		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:13:13-34
 activity#com.tarea.proyectoappinventor.MenuOpciones
-ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:15:9-17:40
+ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:16:9-19:57
+	android:screenOrientation
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:19:13-55
 	android:exported
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:17:13-37
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:18:13-37
 	android:name
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:16:13-41
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:17:13-41
 activity#com.tarea.proyectoappinventor.MainActivity
-ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:18:9-21:58
+ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:20:9-23:58
 	android:screenOrientation
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:21:13-55
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:23:13-55
 	android:exported
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:20:13-37
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:22:13-37
 	android:name
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:19:13-41
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:21:13-41
 activity#com.tarea.proyectoappinventor.Login
-ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:22:9-25:58
+ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:24:9-27:58
 	android:screenOrientation
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:25:13-55
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:27:13-55
 	android:exported
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:24:13-37
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:26:13-37
 	android:name
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:23:13-34
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:25:13-34
 activity#com.tarea.proyectoappinventor.Registro
-ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:26:9-29:58
+ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:28:9-31:58
 	android:screenOrientation
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:29:13-55
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:31:13-55
 	android:exported
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:28:13-37
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:30:13-37
 	android:name
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:27:13-37
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:29:13-37
 activity#com.tarea.proyectoappinventor.MenuInicio
-ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:30:9-39:20
+ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:32:9-41:20
 	android:screenOrientation
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:33:13-55
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:35:13-55
 	android:exported
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:32:13-36
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:34:13-36
 	android:name
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:31:13-39
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:33:13-39
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:34:13-38:29
+ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:36:13-40:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:35:17-69
+ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:37:17-69
 	android:name
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:35:25-66
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:37:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:37:17-77
+ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:39:17-77
 	android:name
-		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:37:27-74
+		ADDED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml:39:27-74
 uses-sdk
 INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\princ\Deskotp\ProyectoAppInventor\app\src\main\AndroidManifest.xml

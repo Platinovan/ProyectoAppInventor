@@ -1,10 +1,12 @@
 package com.tarea.proyectoappinventor;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -15,11 +17,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
 import java.util.Random;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class Juego extends AppCompatActivity {
+    //Declaracion de las variables
+
     //int
     int contador = 0; //Puntaje durante el juego
     int alto, ancho; //Medidas de la pantalla
@@ -32,8 +47,13 @@ public class Juego extends AppCompatActivity {
     boolean perdio = false; //Para cuando el usuario pierda
     boolean estadoReloj;
 
+    //Firebase
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference JUGADORES;
+
     //Otros
-    //Declaracion de las variables
     LottieAnimationView sprite; //Sprite principal
     LottieAnimationView mas_tiempo; //Sprite del reloj
     String UID, USER, SCORE; //Datos necesarios
@@ -42,6 +62,8 @@ public class Juego extends AppCompatActivity {
     RelativeLayout background; //Para el cuando falle
     Dialog GameOver;
     CountDownTimer cuentaRegresiva;
+    MediaPlayer main_theme;
+    MediaPlayer punto;
 
 
     @Override
@@ -58,7 +80,14 @@ public class Juego extends AppCompatActivity {
         background = findViewById(R.id.background);
         GameOver = new Dialog(Juego.this);
         mas_tiempo = findViewById(R.id.mas_tiempo);
-        var = (random.nextInt(1000000) + 1);
+        main_theme = MediaPlayer.create(this, R.raw.main_theme);
+        punto = MediaPlayer.create(this, R.raw.obtener_punto);
+
+        //Firebase
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        JUGADORES = firebaseDatabase.getReference("OvniWallop Users");
 
         //Se recuperan los valores enviados por la actvidad menu
         Bundle intent = getIntent().getExtras();
@@ -73,11 +102,14 @@ public class Juego extends AppCompatActivity {
         ObtenerMedidas();
         NuevaCuentaRegresiva();
 
+        //Inicia melodia principal del juego
+        main_theme.setLooping(true);
+
         //Cuando se hace click en cualquier otra pare de la pantalla
         background.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getApplicationContext(), "Mistake!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Mistake!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -85,6 +117,8 @@ public class Juego extends AppCompatActivity {
         sprite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                var = (random.nextInt(1000000) + 1);
+
                 if (!perdio) {
                     if (stat) {
                         contador += 5;
@@ -177,6 +211,10 @@ public class Juego extends AppCompatActivity {
                 tiempo.setText("00");
                 perdio = true;
                 mas_tiempo.setClickable(false);
+                PuntajeActualizado();
+                if(contador > Integer.parseInt(SCORE)) {
+                    SubirPuntuacion("Puntuacion", contador);
+                }
                 MessageGOver();
             }
         }.start();
@@ -193,8 +231,13 @@ public class Juego extends AppCompatActivity {
         JugarDeNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent JugarNuevo = new Intent(getApplicationContext(), Juego.class);
-                Toast.makeText(getApplicationContext(), "Jugar de nuevo", Toast.LENGTH_SHORT).show();
+                tiempo_partida = 11000;
+                contador = 0;
+                GameOver.dismiss();
+                puntaje.setText("0");
+                perdio = false;
+                NuevaCuentaRegresiva();
+                MoverSprite();
             }
         });
 
@@ -202,6 +245,7 @@ public class Juego extends AppCompatActivity {
         IrMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                main_theme.stop();
                 Intent irMenu = new Intent(getApplicationContext(), MenuInicio.class);
                 startActivity(irMenu);
             }
@@ -210,9 +254,10 @@ public class Juego extends AppCompatActivity {
         GameOver.show();
     }
 
+    //Metodo par el reloj
     private void MasTiempo() {
             //Dependiendo del numero aleatorio el reloj puede aparecer o no
-            if (var >= 100000 && var <= 850000) {
+            if (var >= 350000 && var <= 410000) {
                 estadoReloj = true;
                 int relojX, relojY;
                 int minX = 0;
@@ -234,11 +279,41 @@ public class Juego extends AppCompatActivity {
                         mas_tiempo.setClickable(false);
                         estadoReloj = false;
                     }
-                }, 2500);
+                }, 1200);
 
             } else {
                 mas_tiempo.setImageResource(R.drawable.transparente);
                 mas_tiempo.setClickable(false);
             }
+    }
+
+    private void SubirPuntuacion(String key, int puntaje){
+        HashMap<String, Object> hashmap = new HashMap<>();
+        hashmap.put(key, puntaje);
+        JUGADORES.child(user.getUid()).updateChildren(hashmap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(Juego.this, "Puntaje actualizado", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //Consultar puntaje actualizado en firebas
+    private void PuntajeActualizado(){
+        Query query = JUGADORES.orderByChild("Correo").equalTo(user.getEmail());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    //Se obtienen los datos de la base de datos
+                    SCORE = ""+ds.child("Puntuacion").getValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
