@@ -20,21 +20,29 @@ import java.util.Random;
 import com.airbnb.lottie.LottieAnimationView;
 
 public class Juego extends AppCompatActivity {
+    //int
+    int contador = 0; //Puntaje durante el juego
+    int alto, ancho; //Medidas de la pantalla
+    int tiempo_partida = 11000;
+    int vecesReloj = 0;
+    int var;
+
+    //boolean
+    boolean stat = false; //Por defecto 'ovni.json'
+    boolean perdio = false; //Para cuando el usuario pierda
+    boolean estadoReloj;
+
+    //Otros
     //Declaracion de las variables
     LottieAnimationView sprite; //Sprite principal
     LottieAnimationView mas_tiempo; //Sprite del reloj
     String UID, USER, SCORE; //Datos necesarios
     TextView puntaje, tiempo; //Puntaje y tiempo
     Random random = new Random(); //Para los numeros aleatorios
-    RelativeLayout background;
-    int contador = 0; //Puntaje durante el juego
-    int tiempo_partida = 6000;
-    //Variable para saber cual de las naves se esta mostrando
-    boolean stat = false; //Por defecto 'ovni.json'
-    int alto, ancho; //Medidas de la pantalla
-    boolean perdio = false; //Para cuando el usuario pierda
+    RelativeLayout background; //Para el cuando falle
     Dialog GameOver;
     CountDownTimer cuentaRegresiva;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,7 @@ public class Juego extends AppCompatActivity {
         background = findViewById(R.id.background);
         GameOver = new Dialog(Juego.this);
         mas_tiempo = findViewById(R.id.mas_tiempo);
+        var = (random.nextInt(1000000) + 1);
 
         //Se recuperan los valores enviados por la actvidad menu
         Bundle intent = getIntent().getExtras();
@@ -62,14 +71,13 @@ public class Juego extends AppCompatActivity {
         //obtienen medidas de la pantalla
         puntaje.setText(String.valueOf(contador));
         ObtenerMedidas();
-        //CuentaRegresiva();
         NuevaCuentaRegresiva();
 
         //Cuando se hace click en cualquier otra pare de la pantalla
         background.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Mistake!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Mistake!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -77,10 +85,7 @@ public class Juego extends AppCompatActivity {
         sprite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int var = (random.nextInt(1000000) + 1);
-
                 if (!perdio) {
-                    //Suma el puntaje dependiendo de la nave
                     if (stat) {
                         contador += 5;
                     } else {
@@ -91,25 +96,8 @@ public class Juego extends AppCompatActivity {
                     if (var <= 960000) {
                         stat = false;
                         sprite.setAnimation("ovni.json");
-
-                        //Dependiendo el numero puede aparecer el reloj
-                        if (var <= 960000) {
-                            mas_tiempo.setAnimation("mas_tiempo.json");
-                            mas_tiempo.playAnimation();
-                            //Cuando se presione el reloj
-                            mas_tiempo.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    //Se dan cinco segundos extra
-                                    if(cuentaRegresiva != null){
-                                        tiempo_partida += 10000;
-                                        cuentaRegresiva.cancel();
-                                    }else{
-                                        tiempo_partida = 0;
-                                    }
-                                    NuevaCuentaRegresiva();
-                                }
-                            });
+                        if(!estadoReloj){
+                            MasTiempo();
                         }
 
                     } else if (var == 973642) {
@@ -125,6 +113,25 @@ public class Juego extends AppCompatActivity {
                     puntaje.setText(String.valueOf(contador));
                     MoverSprite();
                     sprite.playAnimation();
+                }
+            }
+        });
+
+        //Cuando se presione el reloj
+        mas_tiempo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ++vecesReloj;
+                if(cuentaRegresiva != null){
+                    tiempo_partida += 5000;
+                    cuentaRegresiva.cancel();
+                }
+                NuevaCuentaRegresiva();
+
+                //Para que solo se pueda una vez
+                if(vecesReloj >= 1){
+                    mas_tiempo.setImageResource(R.drawable.transparente);
+                    mas_tiempo.setClickable(false);
                 }
             }
         });
@@ -155,24 +162,7 @@ public class Juego extends AppCompatActivity {
         sprite.setY(y);
     }
 
-    private void CuentaRegresiva() {
-        //tiempo_pasado = 0;
-        new CountDownTimer(5000, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-                tiempo.setText(String.valueOf(millisUntilFinished / 1000));
-                //tiempo_pasado += 1000;
-            }
-
-            public void onFinish() {
-                tiempo.setText("00");
-                perdio = true;
-                MessageGOver();
-            }
-        }.start();
-
-    }
-
+    //Metodo para la cuenta regresiva
     private void NuevaCuentaRegresiva(){
         cuentaRegresiva = new CountDownTimer(tiempo_partida + 0, 1000) {
             @Override
@@ -183,8 +173,10 @@ public class Juego extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                //Cuando se termine el tiempo
                 tiempo.setText("00");
                 perdio = true;
+                mas_tiempo.setClickable(false);
                 MessageGOver();
             }
         }.start();
@@ -202,7 +194,7 @@ public class Juego extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent JugarNuevo = new Intent(getApplicationContext(), Juego.class);
-                startActivity(JugarNuevo);
+                Toast.makeText(getApplicationContext(), "Jugar de nuevo", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -216,5 +208,37 @@ public class Juego extends AppCompatActivity {
         });
 
         GameOver.show();
+    }
+
+    private void MasTiempo() {
+            //Dependiendo del numero aleatorio el reloj puede aparecer o no
+            if (var >= 100000 && var <= 850000) {
+                estadoReloj = true;
+                int relojX, relojY;
+                int minX = 0;
+                int minY = 111;
+                int maxX = ancho - mas_tiempo.getWidth();
+                int maxY = alto - mas_tiempo.getHeight();
+                relojX = random.nextInt(((maxX - minX) + 1) + minX);
+                relojY = random.nextInt(maxY + 1 - minY) + minY;
+
+                mas_tiempo.setX(relojX);
+                mas_tiempo.setY(relojY);
+                mas_tiempo.setAnimation("mas_tiempo.json");
+                mas_tiempo.setClickable(true);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mas_tiempo.setImageResource(R.drawable.transparente);
+                        mas_tiempo.setClickable(false);
+                        estadoReloj = false;
+                    }
+                }, 2500);
+
+            } else {
+                mas_tiempo.setImageResource(R.drawable.transparente);
+                mas_tiempo.setClickable(false);
+            }
     }
 }
