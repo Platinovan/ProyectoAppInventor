@@ -1,5 +1,6 @@
 package com.tarea.proyectoappinventor;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,11 +32,16 @@ public class MenuInicio extends AppCompatActivity {
     AppCompatButton Jugar;
     TextView userField; //campo para nombre de usuario
     TextView puntuacion;
+    LottieAnimationView Mute;
 
     //Strings para los datos de firebase
     String usr;
     String score;
     String uid;
+
+    //Variables para la configuracion del audio
+    static int contador_boton;
+    static boolean audio_status = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,20 @@ public class MenuInicio extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_menu_inicio);
 
+        //Configuracion del audio
+        Mute = findViewById(R.id.Mute);
+        if(contador_boton == 0){
+            Mute.setAnimation("activate_sound.json");
+            Mute.playAnimation();
+        }else{
+            if(audio_status){
+                Mute.setAnimation("activate_sound.json");
+                Mute.playAnimation();
+            }else{
+                Mute.setImageResource(R.drawable.mute);
+            }
+        }
+
         //Instanciacion de las variables declaradas
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -49,7 +71,6 @@ public class MenuInicio extends AppCompatActivity {
         Jugar = findViewById(R.id.Jugar);
         firebasedata = FirebaseDatabase.getInstance();
         JUGADORES = firebasedata.getReference("OvniWallop Users");
-
         userField = findViewById(R.id.user_field);
         puntuacion = findViewById(R.id.Puntuacion);
 
@@ -62,6 +83,22 @@ public class MenuInicio extends AppCompatActivity {
             }
         });
 
+        //Activar o desactivar el volumen
+        Mute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                contador_boton = 1;
+                audio_status = !audio_status;
+                if(audio_status){
+                    Mute.setAnimation("activate_sound.json");
+                    Mute.playAnimation();
+                }else{
+                    Mute.setImageResource(R.drawable.mute);
+                }
+
+            }
+        });
+
         //Inicia actividad del juego
         Jugar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +106,11 @@ public class MenuInicio extends AppCompatActivity {
                 Intent juego = new Intent(getApplicationContext(), Juego.class);
 
                 //Se envian los parametros necesarios a la actividad del juego
+                String audioStatus = Boolean.toString(audio_status);
                 juego.putExtra("UID", uid);
                 juego.putExtra("USER", usr);
                 juego.putExtra("SCORE", score);
+                juego.putExtra("VOLSTATUS", audioStatus);
 
                 //Se incia la actividad del juego
                 startActivity(juego);
@@ -91,7 +130,6 @@ public class MenuInicio extends AppCompatActivity {
     private void UsuarioenLinea(){
         if(user != null){
             ConsultarDatos();
-            Toast.makeText(getApplicationContext(), "De nuevo en linea", Toast.LENGTH_SHORT).show();
         }else{
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }

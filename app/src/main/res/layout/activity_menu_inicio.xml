@@ -8,6 +8,17 @@
     tools:context=".MenuInicio"
     android:background="@color/bgcolor" >
 
+    <!-- Activar o desactivar el sonido -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/Mute"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="8dp"
+        android:layout_alignParentEnd="true"
+        app:lottie_imageAssetsFolder="assets"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"/>
+
     <!-- Titulo del juego en menu principal -->
     <TextView
         android:layout_width="match_parent"

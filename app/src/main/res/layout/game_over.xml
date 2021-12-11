@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
-    android:layout_height="450dp"
+    android:layout_height="500dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_gravity="center"
@@ -11,6 +11,7 @@
 
     <!-- TextField que indica porque termino el juego -->
     <TextView
+        android:id="@+id/FinalText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Se ha termiado el tiempo!"
@@ -30,12 +31,38 @@
         app:lottie_imageAssetsFolder="assets"
         app:lottie_loop="true" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="248dp">
+
+        <!-- Puntaje Obtenido -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Puntaje Obtenido"
+            android:fontFamily="@font/verminvibesv"
+            android:layout_marginTop="10dp"
+            android:textSize="17dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/PuntajeObtenido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/verminvibesv"
+            android:textSize="28dp"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
     <!-- Boton para volver a jugar -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/JugarNuevo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="320dp"
         android:text="Volver a jugar"
         android:fontFamily="@font/audiowide"
         android:background="#6997CE" />
@@ -45,7 +72,7 @@
         android:id="@+id/IrMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="325dp"
+        android:layout_marginTop="385dp"
         android:text="Regresal al menu"
         android:fontFamily="@font/audiowide"
         android:background="#6997CE" />

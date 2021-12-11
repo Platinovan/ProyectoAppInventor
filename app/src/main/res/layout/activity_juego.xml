@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     android:id="@+id/background"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -85,5 +86,43 @@
         app:lottie_imageAssetsFolder="assets"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="8dp">
+
+        <!-- Primer error -->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/Error1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="4dp"
+            app:lottie_imageAssetsFolder="assets"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false"/>
+
+        <!-- Segundo error -->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/Error2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="13dp"
+            app:lottie_imageAssetsFolder="assets"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false"/>
+
+        <!-- Tercer error -->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/Error3"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="13dp"
+            app:lottie_imageAssetsFolder="assets"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

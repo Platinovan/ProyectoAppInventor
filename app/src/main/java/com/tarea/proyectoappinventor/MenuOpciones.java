@@ -47,7 +47,8 @@ public class MenuOpciones extends AppCompatActivity {
         Perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Editar Perfil", Toast.LENGTH_SHORT).show();
+                Intent perfil = new Intent(getApplicationContext(), Perfil.class);
+                startActivity(perfil);
             }
         });
 

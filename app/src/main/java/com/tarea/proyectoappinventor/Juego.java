@@ -1,5 +1,6 @@
 package com.tarea.proyectoappinventor;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -10,16 +11,15 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.HashMap;
 import java.util.Random;
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,9 +38,10 @@ public class Juego extends AppCompatActivity {
     //int
     int contador = 0; //Puntaje durante el juego
     int alto, ancho; //Medidas de la pantalla
-    int tiempo_partida = 11000;
+    int tiempo_partida = 3000;
     int vecesReloj = 0;
     int var;
+    int error_counter;
 
     //boolean
     boolean stat = false; //Por defecto 'ovni.json'
@@ -53,10 +54,16 @@ public class Juego extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference JUGADORES;
 
-    //Otros
+    //Animaciones lotie
     LottieAnimationView sprite; //Sprite principal
     LottieAnimationView mas_tiempo; //Sprite del reloj
-    String UID, USER, SCORE; //Datos necesarios
+    LottieAnimationView Error1;
+    LottieAnimationView Error2;
+    LottieAnimationView Error3;
+
+    //Otros
+    String UID, USER, SCORE, VOL_STATUS; //Datos necesarios
+    String error_animation = "error_animati.json";
     TextView puntaje, tiempo; //Puntaje y tiempo
     Random random = new Random(); //Para los numeros aleatorios
     RelativeLayout background; //Para el cuando falle
@@ -80,8 +87,13 @@ public class Juego extends AppCompatActivity {
         background = findViewById(R.id.background);
         GameOver = new Dialog(Juego.this);
         mas_tiempo = findViewById(R.id.mas_tiempo);
+        Error1 = findViewById(R.id.Error1);
+        Error2 = findViewById(R.id.Error2);
+        Error3 = findViewById(R.id.Error3);
+
+        //Configuracion del sonido
+        punto = MediaPlayer.create(this, R.raw.sonido_moneda);
         main_theme = MediaPlayer.create(this, R.raw.main_theme);
-        punto = MediaPlayer.create(this, R.raw.obtener_punto);
 
         //Firebase
         firebaseAuth = FirebaseAuth.getInstance();
@@ -95,21 +107,54 @@ public class Juego extends AppCompatActivity {
         UID = intent.getString("UID");
         USER = intent.getString("USER");
         SCORE = intent.getString("SCORE");
+        VOL_STATUS = intent.getString("VOLSTATUS");
 
         //Se setean los valores de contador y tiempo y se
         //obtienen medidas de la pantalla
+        puntaje.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 26);
         puntaje.setText(String.valueOf(contador));
         ObtenerMedidas();
         NuevaCuentaRegresiva();
 
         //Inicia melodia principal del juego
-        main_theme.setLooping(true);
+        if(VOL_STATUS.equals("true")) {
+            main_theme.setLooping(true);
+          //  main_theme.start();
+        }
 
         //Cuando se hace click en cualquier otra pare de la pantalla
         background.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Mistake!", Toast.LENGTH_SHORT).show();
+                ++error_counter;
+
+                if(error_counter >= 3) {
+                    tiempo.setText("00");
+                    perdio = true;
+                    mas_tiempo.setClickable(false);
+                    PuntajeActualizado();
+                    if(contador > Integer.parseInt(SCORE)) {
+                        SubirPuntuacion("Puntuacion", contador);
+                    }
+                    MessageGOver();
+                    if(cuentaRegresiva != null){
+                        cuentaRegresiva.cancel();
+                    }
+                }
+                switch(error_counter){
+                    case 1:
+                        Error1.setAnimation(error_animation);
+                        Error1.playAnimation();
+                        break;
+                    case 2:
+                        Error2.setAnimation(error_animation);
+                        Error2.playAnimation();
+                        break;
+                    case 3:
+                        Error3.setAnimation(error_animation);
+                        Error3.playAnimation();
+                        break;
+                }
             }
         });
 
@@ -117,6 +162,14 @@ public class Juego extends AppCompatActivity {
         sprite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(VOL_STATUS.equals("true")){
+                    if(punto.isPlaying()) {
+                        punto.stop();
+                    }
+                    punto.start();
+                }
+
+                //punto.start();
                 var = (random.nextInt(1000000) + 1);
 
                 if (!perdio) {
@@ -171,6 +224,7 @@ public class Juego extends AppCompatActivity {
         });
     }
 
+
     //Metodo que obtiene las medidas de la pantalla
     private void ObtenerMedidas() {
         Display pantalla = getWindowManager().getDefaultDisplay();
@@ -209,6 +263,9 @@ public class Juego extends AppCompatActivity {
             public void onFinish() {
                 //Cuando se termine el tiempo
                 tiempo.setText("00");
+                Error1.setImageResource(R.drawable.transparente);
+                Error2.setImageResource(R.drawable.transparente);
+                Error3.setImageResource(R.drawable.transparente);
                 perdio = true;
                 mas_tiempo.setClickable(false);
                 PuntajeActualizado();
@@ -226,6 +283,8 @@ public class Juego extends AppCompatActivity {
 
         AppCompatButton JugarDeNuevo = GameOver.findViewById(R.id.JugarNuevo);
         AppCompatButton IrMenu = GameOver.findViewById(R.id.IrMenu);
+        TextView GameOverText = GameOver.findViewById(R.id.FinalText);
+        TextView PuntajeObtenido = GameOver.findViewById(R.id.PuntajeObtenido);
 
         //Cuando se presione Jugar de nuevo
         JugarDeNuevo.setOnClickListener(new View.OnClickListener() {
@@ -233,9 +292,13 @@ public class Juego extends AppCompatActivity {
             public void onClick(View view) {
                 tiempo_partida = 11000;
                 contador = 0;
+                error_counter = 0;
                 GameOver.dismiss();
                 puntaje.setText("0");
                 perdio = false;
+                Error1.setImageResource(R.drawable.transparente);
+                Error2.setImageResource(R.drawable.transparente);
+                Error3.setImageResource(R.drawable.transparente);
                 NuevaCuentaRegresiva();
                 MoverSprite();
             }
@@ -245,11 +308,21 @@ public class Juego extends AppCompatActivity {
         IrMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 main_theme.stop();
+                if(cuentaRegresiva != null){
+                    cuentaRegresiva.cancel();
+                }
                 Intent irMenu = new Intent(getApplicationContext(), MenuInicio.class);
                 startActivity(irMenu);
             }
         });
+
+        if(error_counter >= 3){
+            GameOverText.setText("Demasiados intentos fallidos");
+        }
+
+        PuntajeObtenido.setText(String.valueOf(contador));
 
         GameOver.show();
     }
@@ -257,7 +330,7 @@ public class Juego extends AppCompatActivity {
     //Metodo par el reloj
     private void MasTiempo() {
             //Dependiendo del numero aleatorio el reloj puede aparecer o no
-            if (var >= 350000 && var <= 410000) {
+            if (var >= 350000 && var <= 380000) {
                 estadoReloj = true;
                 int relojX, relojY;
                 int minX = 0;
@@ -293,7 +366,6 @@ public class Juego extends AppCompatActivity {
         JUGADORES.child(user.getUid()).updateChildren(hashmap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(Juego.this, "Puntaje actualizado", Toast.LENGTH_SHORT).show();
             }
         });
     }
