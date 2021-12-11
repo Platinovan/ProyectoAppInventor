@@ -38,7 +38,7 @@ public class Juego extends AppCompatActivity {
     //int
     int contador = 0; //Puntaje durante el juego
     int alto, ancho; //Medidas de la pantalla
-    int tiempo_partida = 3000;
+    int tiempo_partida = 13000;
     int vecesReloj = 0;
     int var;
     int error_counter;
@@ -69,9 +69,17 @@ public class Juego extends AppCompatActivity {
     RelativeLayout background; //Para el cuando falle
     Dialog GameOver;
     CountDownTimer cuentaRegresiva;
+
+    //Audio
     MediaPlayer main_theme;
     MediaPlayer punto;
-
+    MediaPlayer perder;
+    int MaxMainThemeVolume = 10;
+    int PuntoVolume = 10000;
+    int PerderVolume = 50;
+    float log1=(float)(Math.log(MaxMainThemeVolume-8.9)/Math.log(MaxMainThemeVolume));
+    float log2=(float)(Math.log(PuntoVolume+PuntoVolume)/Math.log(PuntoVolume));
+    float log3=(float)(Math.log(PerderVolume-35)/Math.log(PuntoVolume));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +102,9 @@ public class Juego extends AppCompatActivity {
         //Configuracion del sonido
         punto = MediaPlayer.create(this, R.raw.sonido_moneda);
         main_theme = MediaPlayer.create(this, R.raw.main_theme);
+        perder = MediaPlayer.create(this, R.raw.sonido_perder);
+        punto.setVolume(log2, log2);
+        perder.setVolume(log3, log3);
 
         //Firebase
         firebaseAuth = FirebaseAuth.getInstance();
@@ -119,7 +130,8 @@ public class Juego extends AppCompatActivity {
         //Inicia melodia principal del juego
         if(VOL_STATUS.equals("true")) {
             main_theme.setLooping(true);
-          //  main_theme.start();
+            main_theme.setVolume(log1, log1);
+            main_theme.start();
         }
 
         //Cuando se hace click en cualquier otra pare de la pantalla
@@ -162,10 +174,11 @@ public class Juego extends AppCompatActivity {
         sprite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(VOL_STATUS.equals("true")){
-                    if(punto.isPlaying()) {
+                if (VOL_STATUS.equals("true")) {
+                    if (punto.isPlaying()) {
                         punto.stop();
                     }
+                    punto.setVolume(log2, log2);
                     punto.start();
                 }
 
@@ -272,6 +285,12 @@ public class Juego extends AppCompatActivity {
                 if(contador > Integer.parseInt(SCORE)) {
                     SubirPuntuacion("Puntuacion", contador);
                 }
+                //Inicia sonido de perder
+                main_theme.stop();
+                if(VOL_STATUS.equals("true")) {
+                    perder.setLooping(false);
+                    perder.start();
+                }
                 MessageGOver();
             }
         }.start();
@@ -290,7 +309,7 @@ public class Juego extends AppCompatActivity {
         JugarDeNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tiempo_partida = 11000;
+                tiempo_partida = 13000;
                 contador = 0;
                 error_counter = 0;
                 GameOver.dismiss();
@@ -299,6 +318,13 @@ public class Juego extends AppCompatActivity {
                 Error1.setImageResource(R.drawable.transparente);
                 Error2.setImageResource(R.drawable.transparente);
                 Error3.setImageResource(R.drawable.transparente);
+                //Configuracion del sonido
+                if(VOL_STATUS.equals("true")) {
+                    main_theme = MediaPlayer.create(Juego.this, R.raw.main_theme);
+                    main_theme.setLooping(true);
+                    main_theme.setVolume(log1, log1);
+                    main_theme.start();
+                }
                 NuevaCuentaRegresiva();
                 MoverSprite();
             }
@@ -321,9 +347,13 @@ public class Juego extends AppCompatActivity {
         if(error_counter >= 3){
             GameOverText.setText("Demasiados intentos fallidos");
         }
-
         PuntajeObtenido.setText(String.valueOf(contador));
-
+        //Inicia sonido de perder
+        main_theme.stop();
+        if(VOL_STATUS.equals("true")) {
+            perder.setLooping(false);
+            perder.start();
+        }
         GameOver.show();
     }
 

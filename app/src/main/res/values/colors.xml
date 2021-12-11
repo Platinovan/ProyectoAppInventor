@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bgcolor">#002253</color>
     <color name='textcolor'>#C1C1C1</color>
-    <color name='lightgray'>#AFAFAF</color>
+    <color name='lightgray'>#FFD5D3D3</color>
     <color name='Registrobtn'>#4CAF50</color>
     <color name='Botones'>#CD4444</color>
 </resources>
