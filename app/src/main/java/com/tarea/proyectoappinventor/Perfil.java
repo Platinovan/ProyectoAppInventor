@@ -13,6 +13,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -191,10 +192,13 @@ public class Perfil extends AppCompatActivity {
                     Correo.setText(CORREO);
                     Apodo.setText(APODO);
                     Fecha.setText(FECHA);
-                    Picasso.get().load(IMAGEN).into(FotoDePerfil);
+                    if(!IMAGEN.equals("")) {
+                        Picasso.get().load(IMAGEN).into(FotoDePerfil);
+                    }else{
+                        FotoDePerfil.setImageDrawable(Drawable.createFromPath(String.valueOf(R.drawable.default_image_profile)));
+                    }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
