@@ -194,8 +194,6 @@ public class Perfil extends AppCompatActivity {
                     Fecha.setText(FECHA);
                     if(!IMAGEN.equals("")) {
                         Picasso.get().load(IMAGEN).into(FotoDePerfil);
-                    }else{
-                        FotoDePerfil.setImageDrawable(Drawable.createFromPath(String.valueOf(R.drawable.default_image_profile)));
                     }
                 }
             }
