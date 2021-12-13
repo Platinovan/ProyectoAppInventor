@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/LinearLayoutApodo"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="260dp"
+    android:layout_height="wrap_content"
+    android:background="#8F2D56"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:paddingHorizontal="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Texto de cambiar nombre de usuario -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="cambiar Apodo"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:fontFamily="@font/audiowide"
+        android:layout_marginTop="20dp"/>
+
+        <!-- Text Input para el nuevo apodo-->
+        <!-- ID: NuevoApodoField -->
+        <EditText
+            android:id="@+id/NuevoApodoField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nuevo Apodo"
+            android:textColorHint="@color/lightgray"
+            android:backgroundTint="@color/lightgray"
+            android:inputType="text"
+            android:layout_marginTop="50dp"
+            android:textColor="@color/white"
+            android:singleLine="true"
+            android:maxLength="18"/>
+
+        <!-- Clear text para el nuevo apodo ingresado -->
+        <!-- ID: ClearTextApodo -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ClearTextApodo"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="62dp"
+            android:background="@drawable/clear_text"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="7dp"/>
+
+        <!-- Boton para confirmar el cambio -->
+        <!-- ID: AceptarNuevoApodo -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/AceptarNuevoApodo"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginTop="115dp"
+            android:text="Aceptar"
+            android:layout_marginLeft="130dp"
+            android:padding="0dp"
+            android:background="#3DBAB4"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Boton para cancelar en cambio del nuevo apodo -->
+        <!-- ID: CancelarNuevoApodo -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/CancelarNuevoApodo"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginTop="115dp"
+            android:padding="0dp"
+            android:text="Cancelar"
+            android:layout_marginLeft="30dp"
+            android:background="#3DBAB4"
+            android:layout_marginBottom="20dp"/>
+
+</RelativeLayout>

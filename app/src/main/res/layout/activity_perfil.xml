@@ -23,13 +23,33 @@
         android:fontFamily="@font/verminvibesv"
         android:paddingTop="7dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Borde blanco para la imagen -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:src="@drawable/blanco"
+            android:layout_marginTop="90dp"
+            android:layout_width="176sp"
+            android:layout_height="176sp"
+            android:layout_centerHorizontal="true" />
+
+    </LinearLayout>
+
     <!-- Imagen de perfil de jugador -->
     <de.hdodenhof.circleimageview.CircleImageView
-        android:src="@drawable/default_profile"
-        android:layout_marginTop="90dp"
+        android:id="@+id/FotoDePerfil"
+        android:src="@drawable/default_image_profile"
+        android:layout_marginTop="93dp"
         android:layout_width="170sp"
         android:layout_height="170sp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true" />
+
+
+
 
     <!-- Recuadro datos -->
     <LinearLayout
@@ -74,14 +94,16 @@
 
         <!-- Text field para el nombre de usiario -->
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/EditarApodo"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:drawableEnd="@drawable/edit_icon_dos"
+            android:fontFamily="@font/audiowide"
             android:text="Apodo"
             android:textAlignment="center"
-            android:layout_marginTop="20dp"
-            android:textSize="25dp"
             android:textColor="@color/white"
-            android:fontFamily="@font/audiowide"/>
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/perfilApodo"

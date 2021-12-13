@@ -75,11 +75,11 @@ public class Juego extends AppCompatActivity {
     MediaPlayer punto;
     MediaPlayer perder;
     int MaxMainThemeVolume = 10;
-    int PuntoVolume = 10000;
+    int PuntoVolume = 10000000;
     int PerderVolume = 50;
-    float log1=(float)(Math.log(MaxMainThemeVolume-8.9)/Math.log(MaxMainThemeVolume));
-    float log2=(float)(Math.log(PuntoVolume+PuntoVolume)/Math.log(PuntoVolume));
-    float log3=(float)(Math.log(PerderVolume-35)/Math.log(PuntoVolume));
+    float log1=(float)(Math.log(MaxMainThemeVolume-8.5)/Math.log(MaxMainThemeVolume));
+    float log2=(float)(Math.log(PuntoVolume+(PuntoVolume * 100))/Math.log(PuntoVolume));
+    float log3=(float)(Math.log(PerderVolume-17)/Math.log(PuntoVolume));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +103,7 @@ public class Juego extends AppCompatActivity {
         punto = MediaPlayer.create(this, R.raw.sonido_moneda);
         main_theme = MediaPlayer.create(this, R.raw.main_theme);
         perder = MediaPlayer.create(this, R.raw.sonido_perder);
+        main_theme.setVolume(log1, log1);
         punto.setVolume(log2, log2);
         perder.setVolume(log3, log3);
 
@@ -130,7 +131,6 @@ public class Juego extends AppCompatActivity {
         //Inicia melodia principal del juego
         if(VOL_STATUS.equals("true")) {
             main_theme.setLooping(true);
-            main_theme.setVolume(log1, log1);
             main_theme.start();
         }
 

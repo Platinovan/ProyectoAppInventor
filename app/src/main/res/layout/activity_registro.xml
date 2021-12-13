@@ -17,6 +17,7 @@
         android:paddingLeft="25sp"
         android:layout_marginTop="18sp"/>
 
+    <!-- Campo de texto para el correo -->
     <EditText
         android:id="@+id/correo"
         android:layout_width="250sp"
@@ -30,19 +31,21 @@
         android:textColorHint="@color/lightgray"
         android:backgroundTint="@color/white"/>
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="250sp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25sp"
-        android:layout_marginTop="210sp"
-        android:hint="Crear contraseña"
-        android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textColorHint="@color/lightgray"
-        android:backgroundTint="@color/white"/>
+    <!-- Campo de texto para la password -->
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="250sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25sp"
+            android:layout_marginTop="210sp"
+            android:hint="Crear contraseña"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textColorHint="@color/lightgray"
+            android:backgroundTint="@color/white"/>
 
+    <!-- Campo de texto para el apodo del usuario -->
     <EditText
         android:id="@+id/apodo"
         android:layout_width="250sp"

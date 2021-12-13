@@ -98,6 +98,7 @@ public class Registro extends AppCompatActivity {
                             userData.put("Apodo", nicknameStr);
                             userData.put("Se unio", dateStr);
                             userData.put("Puntuacion", score);
+                            userData.put("Imagen", "");
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference reference = database.getReference("OvniWallop Users");
