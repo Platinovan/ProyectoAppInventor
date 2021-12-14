@@ -2,11 +2,18 @@ package com.tarea.proyectoappinventor;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -17,6 +24,7 @@ public class MenuOpciones extends AppCompatActivity {
     AppCompatButton topGlobal;
     AppCompatButton Perfil;
     AppCompatButton Acercade;
+    Dialog Loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,12 @@ public class MenuOpciones extends AppCompatActivity {
         //Instanciacion de las variables declaradas
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+
+        //Icono de carga
+        Loading = new Dialog(MenuOpciones.this, android.R.style.Theme_Black_NoTitleBar);
+        Loading.setContentView(R.layout.cargando);
+        RelativeLayout relativeLayout = Loading.findViewById(R.id.CargandoLayout);
+
         //Botones
         cerrar = findViewById(R.id.cerrarSesion); //boton cerrar sesion
         topGlobal = findViewById(R.id.TopGlobal); //boton top global
@@ -48,7 +62,16 @@ public class MenuOpciones extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent perfil = new Intent(getApplicationContext(), Perfil.class);
-                startActivity(perfil);
+                relativeLayout.setClickable(false);
+                Loading.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                Loading.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Loading.dismiss();
+                        startActivity(perfil);
+                    }
+                }, 3500);
             }
         });
 

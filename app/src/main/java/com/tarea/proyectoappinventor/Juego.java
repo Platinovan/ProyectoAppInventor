@@ -418,4 +418,23 @@ public class Juego extends AppCompatActivity {
             }
         });
     }
+
+    //On back pressed para corregir bugs y fallos
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //Corrige que el sonido se siga reproduciendo despues de salir
+        if(main_theme.isPlaying()){
+            main_theme.stop();
+        }
+
+        if(punto.isPlaying()){
+            punto.stop();
+        }
+
+        //Corrige el bug del tiempo al regresar
+        if(cuentaRegresiva != null){
+            cuentaRegresiva.cancel();
+        }
+    }
 }

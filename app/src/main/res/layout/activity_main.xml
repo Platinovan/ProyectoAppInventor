@@ -38,11 +38,11 @@
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="320dp"
         android:layout_height="320dp"
-        app:lottie_rawRes="@raw/ovni"
-        android:layout_marginTop="165sp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="165sp"
+        app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_autoPlay="true"/>
+        app:lottie_rawRes="@raw/ovni" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/botonRegistro"
