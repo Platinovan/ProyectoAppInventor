@@ -13,10 +13,12 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
@@ -57,6 +59,7 @@ public class Perfil extends AppCompatActivity {
     TextView Apodo;
     TextView Fecha;
     Dialog CambiarApodo;
+    Dialog CargandoImagen;
 
     //Strings
     String CORREO;
@@ -81,6 +84,7 @@ public class Perfil extends AppCompatActivity {
     private Uri imagen_uri;
     private String perfil;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +98,7 @@ public class Perfil extends AppCompatActivity {
         Fecha = findViewById(R.id.perfilFecha);
         EditarApodo = findViewById(R.id.EditarApodo);
         CambiarApodo = new Dialog(Perfil.this);
+        CargandoImagen = new Dialog(Perfil.this, android.R.style.Theme_Black_NoTitleBar);
         FotoDePerfil = findViewById(R.id.FotoDePerfil);
         almacenamientoReferencia = FirebaseStorage.getInstance().getReference();
         PermisosDeAlmacenamiento = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -106,6 +111,12 @@ public class Perfil extends AppCompatActivity {
 
         //Se consultan los datos del jugador
         ConsultarDatos();
+
+        //Configuracion del icono de loading de la imagen
+        CargandoImagen.setContentView(R.layout.cargando_imagen);
+        RelativeLayout relativeLayout = CargandoImagen.findViewById(R.id.CargandoImagenIcono);
+        relativeLayout.setClickable(false);
+        CargandoImagen.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         //Cuando se presione editar apodo
         EditarApodo.setOnClickListener(new View.OnClickListener() {
@@ -274,6 +285,9 @@ public class Perfil extends AppCompatActivity {
 
     //Subir la imagen al storage de firebase
     private void SubirFoto(Uri imagen_uri){
+        //Inicia la animacion loading para indicar que la imagen se esta cargando
+        CargandoImagen.show();
+
         String nombreImagen = rutaImagenFirebase + "" + perfil + user.getUid();
         StorageReference storageReference = almacenamientoReferencia.child(nombreImagen);
         storageReference.putFile(imagen_uri).
@@ -292,21 +306,25 @@ public class Perfil extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
+                                                CargandoImagen.dismiss();
                                                 Toast.makeText(getApplicationContext(), "Imagen Actualizada", Toast.LENGTH_SHORT).show();
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
+                                        CargandoImagen.dismiss();
                                         Toast.makeText(getApplicationContext(), "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }else{
+                                CargandoImagen.dismiss();
                                 Toast.makeText(getApplicationContext(), "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
                             }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                CargandoImagen.dismiss();
                 Toast.makeText(getApplicationContext(), "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
             }
         });

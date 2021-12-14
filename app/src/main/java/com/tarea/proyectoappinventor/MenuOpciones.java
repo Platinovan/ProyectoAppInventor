@@ -38,9 +38,9 @@ public class MenuOpciones extends AppCompatActivity {
         user = auth.getCurrentUser();
 
         //Icono de carga
-        Loading = new Dialog(MenuOpciones.this, android.R.style.Theme_Black_NoTitleBar);
-        Loading.setContentView(R.layout.cargando);
-        RelativeLayout relativeLayout = Loading.findViewById(R.id.CargandoLayout);
+       Loading = new Dialog(MenuOpciones.this, android.R.style.Theme_Black_NoTitleBar);
+       Loading.setContentView(R.layout.cargando);
+       RelativeLayout relativeLayout = Loading.findViewById(R.id.CargandoLayout);
 
         //Botones
         cerrar = findViewById(R.id.cerrarSesion); //boton cerrar sesion
@@ -66,11 +66,10 @@ public class MenuOpciones extends AppCompatActivity {
                 Loading.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 Loading.show();
                 new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Loading.dismiss();
+                  @Override
+                  public void run() {
                         startActivity(perfil);
-                    }
+                   }
                 }, 3500);
             }
         });
@@ -98,5 +97,24 @@ public class MenuOpciones extends AppCompatActivity {
     private void cerrarSesion(){
         auth.signOut();
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    }
+
+    //Cuando se regrese desde otra actividad
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(Loading.isShowing()){
+            Loading.dismiss();
+        }
+    }
+
+    //Cuando se reinicie la actividad
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(Loading.isShowing()){
+            Loading.dismiss();
+        }
     }
 }

@@ -29,7 +29,8 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textColorHint="@color/lightgray"
-        android:backgroundTint="@color/white"/>
+        android:backgroundTint="@color/white"
+        android:maxLength="320"/>
 
     <!-- Campo de texto para la password -->
         <EditText
@@ -43,7 +44,8 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textColorHint="@color/lightgray"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/white"
+            android:maxLength="64"/>
 
     <!-- Campo de texto para el apodo del usuario -->
     <EditText
@@ -57,7 +59,8 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textColorHint="@color/lightgray"
-        android:backgroundTint="@color/white"/>
+        android:backgroundTint="@color/white"
+        android:maxLength="18"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Registro"
