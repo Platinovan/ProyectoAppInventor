@@ -75,7 +75,7 @@ public class MenuOpciones extends AppCompatActivity {
                   public void run() {
                         startActivity(perfil);
                    }
-                }, 3500);
+                }, 3000);
             }
         });
 
