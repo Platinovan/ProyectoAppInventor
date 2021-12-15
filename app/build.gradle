@@ -29,8 +29,9 @@ android {
 }
 
 dependencies {
+
     implementation 'com.squareup.picasso:picasso:2.71828' /*GESTIONAR IMAGEN*/
-    implementation 'de.hdodenhof:circleimageview:3.0.1'   /*IMAGEN CIRCULAR*/
+    implementation 'de.hdodenhof:circleimageview:3.1.0' /*IMAGEN CIRCULAR*/
     implementation 'com.airbnb.android:lottie:4.2.2'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'

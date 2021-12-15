@@ -53,7 +53,12 @@ public class MenuOpciones extends AppCompatActivity {
         topGlobal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Top Global", Toast.LENGTH_SHORT).show();
+                Intent RankGlobal = new Intent(getApplicationContext(), TopGlobal.class);
+                relativeLayout.setClickable(false);
+                Loading.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                Loading.show();
+                startActivity(RankGlobal);
+
             }
         });
 

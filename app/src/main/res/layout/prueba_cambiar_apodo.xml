@@ -33,7 +33,7 @@
             android:layout_marginTop="50dp"
             android:textColor="@color/white"
             android:singleLine="true"
-            android:maxLength="18"/>
+            android:maxLength="20"/>
 
         <!-- Clear text para el nuevo apodo ingresado -->
         <!-- ID: ClearTextApodo -->

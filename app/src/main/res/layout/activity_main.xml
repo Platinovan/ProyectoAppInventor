@@ -19,7 +19,7 @@
         android:textSize="85sp"
         android:textColor="@color/textcolor"
         android:fontFamily="@font/audiowide"
-        android:layout_marginTop="22sp"/>
+        android:layout_marginTop="15sp"/>
 
     <!-- 2/2 titulo -->
     <TextView
@@ -30,7 +30,7 @@
         android:text="Wallop"
         android:textColor="@color/textcolor"
         android:textSize="45sp"
-        android:layout_marginTop="107sp"
+        android:layout_marginTop="100sp"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/audiowide"/>
 
@@ -39,7 +39,7 @@
         android:layout_width="320dp"
         android:layout_height="320dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="125sp"
+        android:layout_marginTop="118sp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/ovni" />
@@ -49,7 +49,7 @@
         android:layout_width="200sp"
         android:layout_height="65sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="395sp"
+        android:layout_marginTop="388sp"
         android:background="#CD4444"
         android:text="Registrarse"
         android:textColor="@color/white"
@@ -61,7 +61,7 @@
         android:layout_width="200sp"
         android:layout_height="65sp"
         android:background="#CD4444"
-        android:layout_marginTop="485sp"
+        android:layout_marginTop="478sp"
         android:layout_centerHorizontal="true"
         android:text="Iniciar sesion"
         android:textColor="@color/white"
@@ -76,7 +76,7 @@
         android:textColor="@color/white"
         android:textAlignment="textEnd"
         android:paddingHorizontal="10sp"
-        android:textSize="11sp"
+        android:textSize="10sp"
         android:paddingVertical="2sp"/>
 
 </RelativeLayout>

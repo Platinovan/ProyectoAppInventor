@@ -60,7 +60,7 @@
         android:textSize="20sp"
         android:textColorHint="@color/lightgray"
         android:backgroundTint="@color/white"
-        android:maxLength="18"/>
+        android:maxLength="20"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Registro"

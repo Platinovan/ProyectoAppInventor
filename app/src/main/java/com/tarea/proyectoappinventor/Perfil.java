@@ -72,6 +72,7 @@ public class Perfil extends AppCompatActivity {
 
     //Firebase storage para la imagen de perfil
     CircleImageView FotoDePerfil;
+
     private StorageReference almacenamientoReferencia;
     private String rutaImagenFirebase = "FotosDePerfil/*";
 
@@ -179,7 +180,6 @@ public class Perfil extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Cambiar Imagen", Toast.LENGTH_SHORT).show();
                 perfil = "Imagen";
                 AcualizarImagenDePerfil();
             }
