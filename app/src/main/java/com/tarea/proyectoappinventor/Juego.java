@@ -38,7 +38,7 @@ public class Juego extends AppCompatActivity {
     //int
     int contador = 0; //Puntaje durante el juego
     int alto, ancho; //Medidas de la pantalla
-    int tiempo_partida = 16000;
+    int tiempo_partida = 18000;
     int vecesReloj = 0;
     int var;
     int error_counter;
@@ -309,7 +309,7 @@ public class Juego extends AppCompatActivity {
         JugarDeNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tiempo_partida = 16000;
+                tiempo_partida = 18000;
                 contador = 0;
                 error_counter = 0;
                 GameOver.dismiss();
