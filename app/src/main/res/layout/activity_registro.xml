@@ -35,7 +35,7 @@
     <!-- Campo de texto para la password -->
         <EditText
             android:id="@+id/password"
-            android:layout_width="250sp"
+            android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25sp"
             android:layout_marginTop="210sp"
@@ -46,6 +46,15 @@
             android:textColorHint="@color/lightgray"
             android:backgroundTint="@color/white"
             android:maxLength="64"/>
+
+    <!-- Boton para poder ver la contrase;a-->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/VerPasswordRegistro"
+            android:layout_width="37dp"
+            android:layout_height="40dp"
+            android:background="@drawable/view_dos"
+            android:layout_marginTop="215sp"
+            android:layout_marginLeft="230dp"/>
 
     <!-- Campo de texto para el apodo del usuario -->
     <EditText

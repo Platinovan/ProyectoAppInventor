@@ -19,7 +19,7 @@
 
         <EditText
             android:id="@+id/CorreoLogin"
-            android:layout_width="250sp"
+            android:layout_width="215sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="130sp"
             android:layout_marginLeft="25sp"
@@ -30,9 +30,13 @@
             android:inputType="textEmailAddress"
             android:backgroundTint="@color/white" />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/PasswordLogin"
-            android:layout_width="250sp"
+            android:layout_width="215sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="210sp"
             android:layout_marginLeft="25sp"
@@ -41,7 +45,19 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:inputType="textPassword"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/white"
+            android:maxLines="1" />
+
+        <!-- Boton para ver la contraseña -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/VerPasswordLogin"
+            android:layout_width="37dp"
+            android:layout_height="40dp"
+            android:background="@drawable/view_dos"
+            android:layout_marginTop="215sp"
+            android:layout_marginLeft="248dp"/>
+
+    </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/InicioSesion"
@@ -57,8 +73,8 @@
     <!-- Comienza en diseño de las imágenes-->
 
     <ImageView
-        android:layout_width="160sp"
-        android:layout_height="185sp"
+        android:layout_width="120sp"
+        android:layout_height="175sp"
         android:src="@drawable/saturno"
         android:layout_marginTop="99sp"
         android:layout_alignParentEnd="true"/>

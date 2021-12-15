@@ -3,9 +3,10 @@ package com.tarea.proyectoappinventor;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
+import android.text.InputType;
 import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
@@ -23,7 +24,11 @@ public class Login extends AppCompatActivity {
     //Declaracion de variables
     EditText mail, password;
     AppCompatButton login;
+    AppCompatButton verPass;
     FirebaseAuth auth;
+
+    //Para ver la contraseña
+    boolean estadoPass = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,26 @@ public class Login extends AppCompatActivity {
         mail = findViewById(R.id.CorreoLogin);
         password = findViewById(R.id.PasswordLogin);
         login = findViewById(R.id.InicioSesion);
+        verPass = findViewById(R.id.VerPasswordLogin);
         auth = FirebaseAuth.getInstance();
+
+        //Para poder ver la contraseña
+        verPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                estadoPass = !estadoPass;
+                //Para ver la password
+                if(estadoPass){
+                    verPass.setBackgroundResource(R.drawable.hidden);
+                    password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    password.setSelection(password.length());
+                }else{
+                    verPass.setBackgroundResource(R.drawable.view_dos);
+                    password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    password.setSelection(password.length());
+                }
+            }
+        });
 
         //Click listener para el boton de 'entrar'
         login.setOnClickListener(new View.OnClickListener() {

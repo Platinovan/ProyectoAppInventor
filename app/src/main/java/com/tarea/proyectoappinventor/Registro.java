@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
@@ -35,6 +36,10 @@ public class Registro extends AppCompatActivity {
     FirebaseAuth auth;
     TextView CDATE;
 
+    //para ver el password
+    AppCompatButton verPass;
+    boolean passStat = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +54,29 @@ public class Registro extends AppCompatActivity {
         CDATE = findViewById(R.id.creationDate);
         createAccount = findViewById(R.id.Registro);
         auth = FirebaseAuth.getInstance();
+        verPass = findViewById(R.id.VerPasswordRegistro);
 
         Date date = new Date();
         SimpleDateFormat datefor = new SimpleDateFormat("d'/'MMMM'/'yyyy");
         String d = datefor.format(date);
         CDATE.setText(d);
+
+        //Cuando se presiona el boton para ver el password
+        verPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                passStat = !passStat;
+                if(passStat){
+                    verPass.setBackgroundResource(R.drawable.hidden);
+                    PASSWORD.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    PASSWORD.setSelection(PASSWORD.length());
+                }else{
+                    verPass.setBackgroundResource(R.drawable.view_dos);
+                    PASSWORD.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    PASSWORD.setSelection(PASSWORD.length());
+                }
+            }
+        });
 
         //'OnClickListener' detecta cuando el boton es presionado y valida el formato de la informacion
         createAccount.setOnClickListener(new View.OnClickListener() {
