@@ -184,7 +184,6 @@ public class Perfil extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         CambiarApodo.dismiss();
-                        Toast.makeText(getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT).show();
                     }
                 });
 

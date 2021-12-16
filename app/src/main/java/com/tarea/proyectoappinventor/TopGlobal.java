@@ -1,8 +1,8 @@
 package com.tarea.proyectoappinventor;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
+import androidx.appcompat.app.AppCompatActivity;
 public class TopGlobal extends AppCompatActivity {
 
     @Override
@@ -10,6 +10,7 @@ public class TopGlobal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_top_global);
+        setContentView(R.layout.user_item);
+
     }
 }

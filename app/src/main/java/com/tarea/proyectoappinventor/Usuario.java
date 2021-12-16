@@ -1,18 +1,19 @@
 package com.tarea.proyectoappinventor;
 
 public class Usuario {
-    String Apodo, MejorPuntuacion, JuegaDesde, password;
+    String Apodo, Password, Correo, SeUnio, Uid, Imagen;
     int Puntaje;
 
     public Usuario(){
-
     }
 
-    public Usuario(String apodo, String mejorPuntuacion, String juegaDesde, String password, int puntaje) {
+    public Usuario(String apodo, String password, String correo, String seUnio, String uid, String imagen, int puntaje) {
         Apodo = apodo;
-        MejorPuntuacion = mejorPuntuacion;
-        JuegaDesde = juegaDesde;
-        this.password = password;
+        Password = password;
+        Correo = correo;
+        SeUnio = seUnio;
+        Uid = uid;
+        Imagen = imagen;
         Puntaje = puntaje;
     }
 
@@ -24,28 +25,44 @@ public class Usuario {
         Apodo = apodo;
     }
 
-    public String getMejorPuntuacion() {
-        return MejorPuntuacion;
-    }
-
-    public void setMejorPuntuacion(String mejorPuntuacion) {
-        MejorPuntuacion = mejorPuntuacion;
-    }
-
-    public String getJuegaDesde() {
-        return JuegaDesde;
-    }
-
-    public void setJuegaDesde(String juegaDesde) {
-        JuegaDesde = juegaDesde;
-    }
-
     public String getPassword() {
-        return password;
+        return Password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        Password = password;
+    }
+
+    public String getCorreo() {
+        return Correo;
+    }
+
+    public void setCorreo(String correo) {
+        Correo = correo;
+    }
+
+    public String getSeUnio() {
+        return SeUnio;
+    }
+
+    public void setSeUnio(String seUnio) {
+        SeUnio = seUnio;
+    }
+
+    public String getUid() {
+        return Uid;
+    }
+
+    public void setUid(String uid) {
+        Uid = uid;
+    }
+
+    public String getImagen() {
+        return Imagen;
+    }
+
+    public void setImagen(String imagen) {
+        Imagen = imagen;
     }
 
     public int getPuntaje() {

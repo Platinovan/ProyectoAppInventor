@@ -25,6 +25,7 @@ public class MenuOpciones extends AppCompatActivity {
     AppCompatButton Perfil;
     AppCompatButton Acercade;
     Dialog Loading;
+    Dialog ACERCA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class MenuOpciones extends AppCompatActivity {
         topGlobal = findViewById(R.id.TopGlobal); //boton top global
         Perfil = findViewById(R.id.Perfil); //boton editar Perfil
         Acercade = findViewById(R.id.Acerca); //boton Acerda de
+        ACERCA = new Dialog(MenuOpciones.this);
 
 
         //Top Global
@@ -83,7 +85,19 @@ public class MenuOpciones extends AppCompatActivity {
         Acercade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Acerca de", Toast.LENGTH_SHORT).show();
+                ACERCA.setContentView(R.layout.acerca_de);
+                AppCompatButton quitAcerca = ACERCA.findViewById(R.id.QuitarAcercaDe);
+
+                //Cuando se presione OK
+                quitAcerca.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ACERCA.dismiss();
+                    }
+                });
+
+                //Muestra el dialogo de acerca de
+                ACERCA.show();
             }
         });
 
