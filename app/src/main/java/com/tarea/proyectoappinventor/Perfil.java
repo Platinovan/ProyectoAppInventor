@@ -3,6 +3,7 @@ package com.tarea.proyectoappinventor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.Size;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -15,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.icu.number.NumberFormatter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,6 +33,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -58,17 +62,26 @@ public class Perfil extends AppCompatActivity {
     TextView Correo;
     TextView Apodo;
     TextView Fecha;
-    Dialog CambiarApodo;
-    Dialog CargandoImagen;
 
     //Strings
     String CORREO;
     String APODO;
     String FECHA;
     String IMAGEN;
+    String PASSWORD;
 
     //Editar datos
+    String passMessage = "Contraseña actualizada, asegurate de iniciar sesion con tu nueva contraseña";
     TextView EditarApodo;
+    AppCompatButton CambiarPass;
+    Dialog CambiarApodo;
+    Dialog CargandoImagen;
+    Dialog CambiarPassword;
+
+    //Para ver las contrase;as
+    boolean show1 = false;
+    boolean show2 = false;
+    boolean show3 = false;
 
     //Firebase storage para la imagen de perfil
     CircleImageView FotoDePerfil;
@@ -98,11 +111,15 @@ public class Perfil extends AppCompatActivity {
         Apodo = findViewById(R.id.perfilApodo);
         Fecha = findViewById(R.id.perfilFecha);
         EditarApodo = findViewById(R.id.EditarApodo);
-        CambiarApodo = new Dialog(Perfil.this);
-        CargandoImagen = new Dialog(Perfil.this, android.R.style.Theme_Black_NoTitleBar);
         FotoDePerfil = findViewById(R.id.FotoDePerfil);
         almacenamientoReferencia = FirebaseStorage.getInstance().getReference();
         PermisosDeAlmacenamiento = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        CambiarPass = findViewById(R.id.CambiarPassword);
+
+        //Editar datos
+        CambiarApodo = new Dialog(Perfil.this);
+        CambiarPassword = new Dialog(Perfil.this);
+        CargandoImagen = new Dialog(Perfil.this, android.R.style.Theme_Black_NoTitleBar);
 
         //Firebase
         auth = FirebaseAuth.getInstance();
@@ -184,6 +201,188 @@ public class Perfil extends AppCompatActivity {
                 AcualizarImagenDePerfil();
             }
         });
+
+        //Cuando se presione cambiar password
+        CambiarPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CambiarPassword.setContentView(R.layout.cambiar_password);
+
+                //Campos de texto
+                EditText ActualPass = CambiarPassword.findViewById(R.id.ActualPassField);
+                EditText NewPass = CambiarPassword.findViewById(R.id.NewPass1);
+                EditText NewPassConfirm = CambiarPassword.findViewById(R.id.NewPass2);
+
+                //Ver el password
+                AppCompatButton ShowCurrent = CambiarPassword.findViewById(R.id.ShowCurrentPass);
+                AppCompatButton ShowPass1 = CambiarPassword.findViewById(R.id.ShowNewPass1);
+                AppCompatButton ShowPass2 = CambiarPassword.findViewById(R.id.ShowNewPass2);
+                
+                //Confirmar o descartar los cambios (Botones)
+                AppCompatButton Confirmar = CambiarPassword.findViewById(R.id.AceptarNuevoPass);
+                AppCompatButton Cancelar = CambiarPassword.findViewById(R.id.CancelarNuevoPass);
+                
+
+                //Para ver la password actual
+                ShowCurrent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        show1 = !show1;
+                        if(show1){
+                            ShowCurrent.setBackgroundResource(R.drawable.hidden);
+                            ActualPass.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            ActualPass.setSelection(ActualPass.length());
+                        }else{
+                            ShowCurrent.setBackgroundResource(R.drawable.view_dos);
+                            ActualPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            ActualPass.setSelection(ActualPass.length());
+                        }
+                    }
+                });
+
+
+                //Para ver el pass1
+                ShowPass1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        show2 = !show2;
+                        if(show2){
+                            ShowPass1.setBackgroundResource(R.drawable.hidden);
+                            NewPass.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            NewPass.setSelection(NewPass.length());
+                        }else{
+                            ShowPass1.setBackgroundResource(R.drawable.view_dos);
+                            NewPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            NewPass.setSelection(NewPass.length());
+                        }
+                    }
+                });
+
+                //Para ver el pass2
+                ShowPass2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        show3 = !show3;
+                        if(show3){
+                            ShowPass2.setBackgroundResource(R.drawable.hidden);
+                            NewPassConfirm.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            NewPassConfirm.setSelection(NewPassConfirm.length());
+                        }else{
+                            ShowPass2.setBackgroundResource(R.drawable.view_dos);
+                            NewPassConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            NewPassConfirm.setSelection(NewPassConfirm.length());
+                        }
+                    }
+                });
+
+
+                /* Cuando se acepten o se cancelen los cambios del password*/
+
+                //Cuando se presione aceptar
+                Confirmar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //Strings para los valores de los campos de texto
+                        String CurrentPassword = ActualPass.getText().toString();
+                        String NewPass1 = NewPass.getText().toString();
+                        String NewPass2 = NewPassConfirm.getText().toString();
+
+                        if(CurrentPassword.isEmpty() || NewPass1.isEmpty() || NewPass2.isEmpty()){
+                             if(CurrentPassword.isEmpty()){
+                                 ActualPass.setError("Minimo 6 caracteres");
+                             }
+                             if(NewPass1.isEmpty()){
+                                 NewPass.setError("Minimo 6 caracteres");
+                             }
+                             if(NewPass2.isEmpty()){
+                                 NewPassConfirm.setError("Minimo 6 caracteres");
+                             }
+                        }
+                        if(CurrentPassword.equals(PASSWORD)) {
+                            if (!(NewPass1.length() >= 6) || !(NewPass2.length() >= 6)) {
+                                if (NewPass.length() < 6) {
+                                    NewPass.setError("Minimo 6 caracteres");
+                                }
+
+                                if (NewPassConfirm.length() < 6) {
+                                    NewPassConfirm.setError("Minimo 6 caracteres");
+                                }
+                            }else{
+                                if (NewPass1.equals(NewPass2)) {
+                                    //Ontiene el string de la confirmacion del password
+                                    String NEWPASSWORD = NewPassConfirm.getText().toString().trim();
+
+                                    //Para cambiar la contrase;a
+                                    AuthCredential authCredential = EmailAuthProvider.getCredential(user.getEmail(), CurrentPassword);
+
+                                    user.reauthenticate(authCredential)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    user.updatePassword(NEWPASSWORD)
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void unused) {
+                                                                    String value = NEWPASSWORD;
+                                                                    HashMap<String, Object> result = new HashMap<>();
+                                                                    result.put("Contraseña", value);
+                                                                    JUGADORES.child(user.getUid()).updateChildren(result)
+                                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                @Override
+                                                                                public void onSuccess(Void unused) {
+                                                                                    Toast.makeText(getApplicationContext(), ""+passMessage, Toast.LENGTH_SHORT).show();
+                                                                                    auth.signOut();
+                                                                                    startActivity(new Intent(Perfil.this, Login.class));
+                                                                                    finish();
+                                                                                }
+                                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                        @Override
+                                                                        public void onFailure(@NonNull Exception e) {
+                                                                            Toast.makeText(getApplicationContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    });
+                                                                }
+                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(getApplicationContext(), "Ha ocurrido un error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(getApplicationContext(), "Ha ocurrido un error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+                                } else {
+                                    NewPass.setError("No coinciden");
+                                    NewPassConfirm.setError("No coinciden");
+                                }
+                            }
+                            }else {
+                            ActualPass.setError("Incorrecto");
+                        }
+                    }
+                });
+
+
+                //Cuando se presione cancelar
+                Cancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        show1 = false;
+                        show2 = false;
+                        show3 = false;
+                        CambiarPassword.dismiss();
+                    }
+                });
+
+                //Muestra el menu de cambiar password
+                CambiarPassword.show();
+            }
+        });
     }
 
     //Consulta los datos de el jugador
@@ -198,6 +397,7 @@ public class Perfil extends AppCompatActivity {
                     APODO = ""+ds.child("Apodo").getValue();
                     FECHA = ""+ds.child("Se unio").getValue();
                     IMAGEN = ""+ds.child("Imagen").getValue();
+                    PASSWORD = ""+ds.child("Contraseña").getValue();
 
                     //Se ponen los valores en el campo de texto
                     Correo.setText(CORREO);
@@ -210,7 +410,7 @@ public class Perfil extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT).show();
             }
         });
     }
