@@ -119,7 +119,7 @@ public class Registro extends AppCompatActivity {
                             userData.put("Correo", mailStr);
                             userData.put("Contraseña", passStr);
                             userData.put("Apodo", nicknameStr);
-                            userData.put("Se unio", dateStr);
+                            userData.put("SeUnio", dateStr);
                             userData.put("Puntuacion", score);
                             userData.put("Imagen", "");
 

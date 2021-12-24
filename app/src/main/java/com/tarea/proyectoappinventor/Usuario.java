@@ -1,20 +1,22 @@
 package com.tarea.proyectoappinventor;
 
+import android.widget.Toast;
+
 public class Usuario {
-    String Apodo, Password, Correo, SeUnio, Uid, Imagen;
-    int Puntaje;
+    //Se deben de poner los key que estan en la base de datos
+    String Apodo, Imagen, Correo, SeUnio, Uid;
+    int Puntuacion;
 
     public Usuario(){
     }
 
-    public Usuario(String apodo, String password, String correo, String seUnio, String uid, String imagen, int puntaje) {
+    public Usuario(String apodo, String correo, String seUnio, String uid, String imagen, int puntaje) {
         Apodo = apodo;
-        Password = password;
+        Imagen = imagen;
+        Puntuacion = puntaje;
         Correo = correo;
         SeUnio = seUnio;
         Uid = uid;
-        Imagen = imagen;
-        Puntaje = puntaje;
     }
 
     public String getApodo() {
@@ -25,12 +27,20 @@ public class Usuario {
         Apodo = apodo;
     }
 
-    public String getPassword() {
-        return Password;
+    public String getImagen() {
+        return Imagen;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public void setImagen(String imagen) {
+        Imagen = imagen;
+    }
+
+    public int getPuntuacion() {
+        return Puntuacion;
+    }
+
+    public void setPuntuacion(int puntaje) {
+        Puntuacion = puntaje;
     }
 
     public String getCorreo() {
@@ -55,21 +65,5 @@ public class Usuario {
 
     public void setUid(String uid) {
         Uid = uid;
-    }
-
-    public String getImagen() {
-        return Imagen;
-    }
-
-    public void setImagen(String imagen) {
-        Imagen = imagen;
-    }
-
-    public int getPuntaje() {
-        return Puntaje;
-    }
-
-    public void setPuntaje(int puntaje) {
-        Puntaje = puntaje;
     }
 }

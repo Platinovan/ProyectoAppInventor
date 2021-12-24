@@ -394,7 +394,7 @@ public class Perfil extends AppCompatActivity {
                     //Se obtienen los datos de la base de datos
                     CORREO = ""+ds.child("Correo").getValue();
                     APODO = ""+ds.child("Apodo").getValue();
-                    FECHA = ""+ds.child("Se unio").getValue();
+                    FECHA = ""+ds.child("SeUnio").getValue();
                     IMAGEN = ""+ds.child("Imagen").getValue();
                     PASSWORD = ""+ds.child("Contraseña").getValue();
 

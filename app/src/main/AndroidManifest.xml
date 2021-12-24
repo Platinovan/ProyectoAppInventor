@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoAppInventor">
         <activity
+            android:name=".InfoJugador"
+            android:exported="false" />
+        <activity
             android:name=".TopGlobal"
             android:exported="false" />
         <activity
