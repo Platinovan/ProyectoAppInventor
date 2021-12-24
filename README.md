@@ -19,3 +19,5 @@ Ubicaion de los archivos xml: /app/src/main/res/layout/
 ***Manuales del juego***
 
 ***PDF:*** https://drive.google.com/file/d/1jRI31IZcqTm8VaoZm8WndwxyBpFAx-0d/view?usp=sharing
+***VIDEO:*** https://drive.google.com/file/d/1BTVcCpSiBzW3sVkkPJ34wS1GSrlMEMiD/view?usp=sharing
+***ANIMACION:*** https://drive.google.com/file/d/1pbEgG370cCNqY2WH12EFR4yY7WYJCBCD/view?usp=sharing
