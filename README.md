@@ -16,4 +16,6 @@ Ubicacion de los archivos java: /app/src/main/java/com/tareas/juegoleccionappinv
 
 Ubicaion de los archivos xml: /app/src/main/res/layout/
 
-*** Manuales del juego ***
+***Manuales del juego***
+
+***PDF:*** https://drive.google.com/file/d/1jRI31IZcqTm8VaoZm8WndwxyBpFAx-0d/view?usp=sharing
