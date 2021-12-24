@@ -1,6 +1,6 @@
 ## ProyectoAppInventor
 
-=== JUEGO LECCION APPINVENTOR ===
+## JUEGO LECCION APPINVENTOR
 
 *** **Archivo APK** ***
 
