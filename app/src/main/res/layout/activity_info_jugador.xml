@@ -8,4 +8,153 @@
     tools:context=".InfoJugador"
     android:background="@color/bgcolor">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="20dp">
+
+        <!-- Detalles del jugador -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:textAlignment="center"
+            android:text="Detalles del Jugador"
+            android:textColor="@color/browser_actions_bg_grey"
+            android:textSize="25dp"
+            android:fontFamily="@font/menu_fonts"/>
+
+        <!-- Imagen de perfil del jugador -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ImagenDetalle"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            android:src="@drawable/default_image_profile_dos"
+            android:layout_marginTop="13dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/white"/>
+
+        <!-- Apodo del jugador -->
+        <TextView
+            android:id="@+id/ApodoDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Usernamejuego293333399"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:layout_marginTop="13dp"
+            android:maxLines="1"
+            android:paddingHorizontal="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/recuadro_datos_dos"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="30dp"
+        android:paddingHorizontal="2dp"
+        android:paddingVertical="17dp"
+        android:gravity="center_horizontal">
+
+        <!-- Texto para la mejor puntiacion -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:text="Mejor Puntuacion"
+            android:textSize="25dp"
+            android:fontFamily="@font/audiowide"
+            android:layout_marginTop="0dp"/>
+
+        <!-- Campo de texto para la Mejor Puntuacion -->
+        <!-- ID: PuntuacionDetalle -->
+        <TextView
+            android:id="@+id/PuntuacionDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="#f2ee0a"
+            android:fontFamily="@font/audiowide"
+            android:text="9999"
+            android:textSize="35dp"
+            android:maxLines="1"/>
+
+        <!-- Texto para correo -->
+        <TextView
+            android:layout_marginTop="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:text="Correo"
+            android:textSize="25dp"
+            android:fontFamily="@font/audiowide"/>
+
+        <!-- Campo de texto para el correo -->
+        <!-- ID: CorreoDetalle -->
+        <TextView
+            android:id="@+id/CorreoDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/lightgray"
+            android:text="correo@dominio.com"
+            android:textSize="20dp"
+            android:maxLines="1"/>
+
+        <!-- Texto para el UID del usuario -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:text="Identificador"
+            android:textSize="25dp"
+            android:fontFamily="@font/audiowide"
+            android:layout_marginTop="15dp"/>
+
+        <!-- Campo de texto para el UID del jugador -->
+        <!-- ID: UIDDetalle -->
+        <TextView
+            android:id="@+id/UIDDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/lightgray"
+            android:text="9999"
+            android:textSize="15dp"
+            android:maxLines="1"/>
+
+        <!-- Texto para la fecha en que se unio -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:text="Se Unio"
+            android:textSize="25dp"
+            android:fontFamily="@font/audiowide"
+            android:layout_marginTop="15dp"/>
+
+        <!-- Campo de texto para la fecha en que se unio -->
+        <!-- ID: FechaDetalle -->
+        <TextView
+            android:id="@+id/FechaDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/lightgray"
+            android:text="dia/mes/año"
+            android:textSize="20dp"
+            android:maxLines="1"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>

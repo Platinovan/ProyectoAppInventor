@@ -13,10 +13,12 @@
         android:theme="@style/Theme.ProyectoAppInventor">
         <activity
             android:name=".InfoJugador"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".TopGlobal"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".Perfil"
             android:exported="false"

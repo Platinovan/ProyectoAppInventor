@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/princ/Deskotp/ProyectoAppInventor/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/princ/Deskotp/ProyectoAppInventor/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3769230769230769" />
         <entry key="..\:/Users/princ/Deskotp/ProyectoAppInventor/app/src/main/res/layout/acerca_de.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/princ/Deskotp/ProyectoAppInventor/app/src/main/res/layout/activity_info_jugador.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/princ/Deskotp/ProyectoAppInventor/app/src/main/res/layout/activity_juego.xml" value="0.36666666666666664" />
@@ -21,6 +23,7 @@
         <entry key="..\:/Users/princ/Deskotp/ProyectoAppInventor/app/src/main/res/layout/prueba_cambiar_apodo.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/princ/Deskotp/ProyectoAppInventor/app/src/main/res/layout/prueba_menu_opciones_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/princ/Deskotp/ProyectoAppInventor/app/src/main/res/layout/user_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/princ/Deskotp/ProyectoAppInventor/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3769230769230769" />
       </map>
     </option>
   </component>

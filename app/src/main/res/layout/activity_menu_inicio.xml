@@ -62,7 +62,8 @@
         android:textSize="40sp"
         android:textColor="@color/white"
         android:textAlignment="center"
-        android:text="---------"/>
+        android:text="---------"
+        android:maxLines="1"/>
 
     <!-- Imagen de la nave -->
     <ImageView
@@ -83,7 +84,8 @@
         android:textColor="@color/lightgray"
         android:textAlignment="center"
         android:text="--------"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:maxLines="1"/>
 
     <!-- Boton que inicara la actividad del juego -->
     <androidx.appcompat.widget.AppCompatButton

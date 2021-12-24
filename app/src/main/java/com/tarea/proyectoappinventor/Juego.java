@@ -65,6 +65,7 @@ public class Juego extends AppCompatActivity {
     String UID, USER, SCORE, VOL_STATUS; //Datos necesarios
     String error_animation = "error_animati.json";
     TextView puntaje, tiempo; //Puntaje y tiempo
+    TextView mejorPuntaje;
     Random random = new Random(); //Para los numeros aleatorios
     RelativeLayout background; //Para el cuando falle
     Dialog GameOver;
@@ -98,6 +99,7 @@ public class Juego extends AppCompatActivity {
         Error1 = findViewById(R.id.Error1);
         Error2 = findViewById(R.id.Error2);
         Error3 = findViewById(R.id.Error3);
+        mejorPuntaje = findViewById(R.id.MejorPuntajeJuego);
 
         //Configuracion del sonido
         punto = MediaPlayer.create(this, R.raw.sonido_moneda);
@@ -125,6 +127,7 @@ public class Juego extends AppCompatActivity {
         //obtienen medidas de la pantalla
         puntaje.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 26);
         puntaje.setText(String.valueOf(contador));
+        mejorPuntaje.setText("Mejor puntaje: " + SCORE);
         ObtenerMedidas();
         NuevaCuentaRegresiva();
 
@@ -284,6 +287,7 @@ public class Juego extends AppCompatActivity {
                 PuntajeActualizado();
                 if(contador > Integer.parseInt(SCORE)) {
                     SubirPuntuacion("Puntuacion", contador);
+                    Toast.makeText(getApplicationContext(), "Nuevo record!", Toast.LENGTH_SHORT).show();
                 }
                 //Inicia sonido de perder
                 main_theme.stop();
@@ -310,6 +314,11 @@ public class Juego extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 tiempo_partida = 18000;
+                if(contador > Integer.parseInt(SCORE)) {
+                    mejorPuntaje.setText("Mejor puntaje: " + contador);
+                }else{
+                    mejorPuntaje.setText("Mejor puntaje: " + SCORE);
+                }
                 contador = 0;
                 error_counter = 0;
                 GameOver.dismiss();
